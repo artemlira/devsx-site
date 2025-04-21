@@ -1,0 +1,28 @@
+.technologies-block {
+    margin-bottom: 127px;
+}
+.technologies-block .flex{
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.technologies-block .h3 {
+    padding-bottom: 23px;
+    border-bottom: 1px solid rgba(240, 243, 250, 0.16);
+    margin-bottom: 41px;
+}
+.technologies-block .technology-tags{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    position: relative;
+    top: -1px;
+    flex-wrap: wrap;
+    row-gap: 4px;
+}
+.technology-tag{
+    background: rgba(12, 15, 28, 1);
+    border-radius: 72px;
+    padding: 8px 16px;
+    margin-right: 4px;
+}

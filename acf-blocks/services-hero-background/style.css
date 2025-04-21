@@ -1,0 +1,20 @@
+.devsx-services-hero-background{
+    margin-top: -8px;
+    padding-top: 100px;
+    padding-bottom: 67px;
+    margin-bottom: 64px;
+}
+.devsx-services-hero-background h1{
+    margin-top: 53px;
+    margin-bottom: 38px;
+}
+.devsx-services-hero-background .flex{
+    gap: 16px;
+}
+.devsx-services-hero-background .col-50:first-child img{
+    width: 145px;
+    border-radius: 12px;
+}
+.devsx-services-hero-background .col-50:last-child{
+    padding-top: 217px;
+}
