@@ -1,0 +1,80 @@
+.devsx-about-ideas .flex{
+gap: 35px;
+}
+
+.devsx-about-ideas .section-title {
+  max-width: 590px;
+  font-family: Satoshi-Medium;
+  font-size: clamp(40px, 32.4898px + 1.6327vw, 56px);
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' off;
+  line-height: 1.14; /* 114.286% */
+  text-transform: capitalize;
+}
+
+.devsx-about-ideas .h6 {
+  font-family: Satoshi-Regular;
+  font-size: clamp(18px, 20.9388px + -0.2041vw, 20px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.44; /* 144.444% */
+  color: var(--e-global-color-text-09);
+}
+
+.devsx-about-ideas .list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 63px;
+  padding: 32px 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+.devsx-about-ideas .item {
+  display: flex;
+  flex-direction: column;
+}
+
+.devsx-about-ideas .list-item p {
+  padding: 0;
+  margin: 0;
+}
+
+.devsx-about-ideas .list-item .list-item-number {
+  font-family: Satoshi-Medium;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 115%; /* 73.6px */
+  text-transform: capitalize;
+}
+
+.devsx-about-ideas .list-item .list-item-text {
+  font-family: Satoshi-Medium;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.42; /* 142.857% */
+}
+
+@media screen and (max-width:1023px) {
+  .devsx-about-ideas .section-title {
+    max-width: initial;
+  }
+
+  .devsx-about-ideas .flex {
+    flex-direction: column;
+  }
+
+  .devsx-about-ideas .flex .col-50 {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .devsx-about-ideas .list {
+    grid-template-columns: 1fr;
+  }
+}

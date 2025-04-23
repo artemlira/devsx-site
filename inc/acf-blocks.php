@@ -20,6 +20,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['hero', 'banner', 'heading', 'about']
     ],
     [
+      'slug'        => 'about-ideas',
+      'title'       => __('DevsX - About Our Ideas Section', 'devsx'),
+      'description' => __('Heding and text with media', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['about', 'ideas']
+    ],
+    [
       'slug'        => 'services-about',
       'title'       => __('DevsX - Services About', 'devsx'),
       'description' => __('About us block', 'devsx'),
