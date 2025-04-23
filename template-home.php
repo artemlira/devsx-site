@@ -7,10 +7,10 @@
 get_header(); ?>
 
 <section class="home-hero">
-    <video class="home-hero-video wow fadeIn" data-wow-delay="0.1s" src="<?php echo get_template_directory_uri(); ?>/video/hero-video.mp4" autoplay   playsinline data-wf-ignore="true" data-object-fit="cover"> 
-        <source src="<?php echo get_template_directory_uri(); ?>/video/hero-video.mp4" type="video/mp4">
-        <p class="video-error"><?php esc_html_e( 'Your browser doesen\'t support HTML5 video', 'partybaby' ); ?></p>
-    </video>
+  <video class="home-hero-video wow fadeIn" data-wow-delay="0.1s" autoplay muted playsinline data-wf-ignore="true" data-object-fit="cover">
+    <source src="<?php echo get_template_directory_uri(); ?>/video/hero-video.mp4" type="video/mp4">
+    <p class="video-error"><?php esc_html_e( 'Your browser doesen\'t support HTML5 video', 'partybaby' ); ?></p>
+  </video>
     <div class="home-hero-video-mobile wow fadeIn" data-wow-delay="0.1s">
         <div class="overlay">
             <div class="video-action wow fadeIn" data-wow-delay="0.3s">

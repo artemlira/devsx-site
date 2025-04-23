@@ -32,7 +32,7 @@ if ( get_field('show_transparent_header') ) : $bodyClass="transparent_header";?>
 		<div class="container">
 			<div class="flex aling-center justify-space-between">
 				<div class="site-branding">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<a href="/" rel="home">
 						<img src="<?php echo get_template_directory_uri()?>/images/svg/devsx-logo.svg" alt="<?php bloginfo( 'name' ); ?>">
 					</a>	
 				</div>

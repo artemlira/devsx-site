@@ -1,20 +1,49 @@
 .devsx-services-hero-background{
-    margin-top: -8px;
     padding-top: 100px;
     padding-bottom: 67px;
+    margin-top: -8px;
     margin-bottom: 64px;
 }
+
 .devsx-services-hero-background h1{
     margin-top: 53px;
     margin-bottom: 38px;
 }
+
 .devsx-services-hero-background .flex{
     gap: 16px;
 }
+
 .devsx-services-hero-background .col-50:first-child img{
     width: 145px;
     border-radius: 12px;
 }
+
 .devsx-services-hero-background .col-50:last-child{
     padding-top: 217px;
+}
+
+.page-id-12 .devsx-services-hero-background {
+    height: calc(100vh - 100px);
+    max-height: 1211px;
+    padding-top: 0;
+    background: linear-gradient(180deg, #01040A 12.8%, rgb(0 0 0 / 0%) 50%), url("../../images/content/about-hero-bg.webp") center 35% / cover no-repeat;
+    background-blend-mode: normal, multiply, screen, normal;
+}
+
+.page-id-12 .devsx-services-hero-background .col-50{
+    width: 100%;
+    padding-top: clamp(16px, 0.9796px + 3.2653vw, 48px);
+}
+
+.page-id-12 .devsx-services-hero-background h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: clamp(48px, 29.2245px + 4.0816vw, 88px);
+    text-transform: capitalize;
+}
+
+.page-id-12 .devsx-services-hero-background .opacity-032 {
+    color: var(--e-global-color-text-secondary);
+    opacity: 1;
 }

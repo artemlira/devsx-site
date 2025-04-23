@@ -140,27 +140,44 @@ add_action( 'widgets_init', 'devsx_theme_widgets_init' );
 add_action( 'wp_enqueue_scripts', 'devsx_theme_scripts' );
 
 function devsx_theme_scripts() {
-	wp_enqueue_style( 'devsx-theme-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'devsx-theme-style', 'rtl', 'replace' );
+  wp_enqueue_style( 'devsx-theme-style', get_stylesheet_uri(), array(), _S_VERSION );
+  wp_style_add_data( 'devsx-theme-style', 'rtl', 'replace' );
 
-	// CSS
-	wp_enqueue_style('devsx-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
-	wp_enqueue_style('devsx-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
-	wp_enqueue_style( 'devsx-style-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-theme-style-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-theme-style-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-theme-style-media', get_template_directory_uri() . '/css/media.css', array(), _S_VERSION );
+  // CSS
+  wp_enqueue_style('devsx-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
+  wp_enqueue_style('devsx-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+  wp_enqueue_style( 'devsx-style-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION );
+  wp_enqueue_style( 'devsx-theme-style-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION );
+  wp_enqueue_style( 'devsx-theme-style-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION );
+  wp_enqueue_style( 'devsx-theme-style-media', get_template_directory_uri() . '/css/media.css', array(), _S_VERSION );
 
-	// JS
-	wp_enqueue_script('devsx-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
-	wp_enqueue_script('anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
-	wp_enqueue_script('devsx-dotlottie-player-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array('jquery'), null, true);
-	wp_enqueue_script( 'devsx-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
-	wp_enqueue_script( 'devsx-theme-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true );
+  // JS
+  wp_enqueue_script('devsx-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
+  wp_enqueue_script('anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+  // Регистрируем скрипт dotlottie-player, но не подключаем его сразу
+  if (!is_admin()) {
+    wp_enqueue_script( 'devsx-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
+    wp_register_script('devsx-dotlottie-player-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array(), null, true);
+    wp_enqueue_script('devsx-dotlottie-player-js');
+  }
+
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+    wp_enqueue_script( 'comment-reply' );
+  }
+
+  wp_enqueue_script( 'devsx-theme-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true );
+}
+
+// Добавляем фильтр для изменения тега script
+add_filter('script_loader_tag', 'add_module_type_to_scripts', 10, 3);
+
+function add_module_type_to_scripts($tag, $handle, $src) {
+  if ('devsx-dotlottie-player-js' === $handle) {
+    // Заменяем стандартный тег script на тег с атрибутом type="module"
+    $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+  }
+  return $tag;
 }
 
 add_action( 'admin_enqueue_scripts', 'devsx_enqueue_block_editor_assets' );
@@ -264,3 +281,7 @@ function devsx_breadcrumbs() {
         echo '</nav>';
     }
 }
+
+add_filter( 'rest_url', function( $url ) {
+  return str_replace( 'http://', 'https://', $url );
+});
