@@ -1,3 +1,8 @@
+.devsx-about-ideas {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
 .devsx-about-ideas .flex{
 gap: 35px;
 }
@@ -11,6 +16,10 @@ gap: 35px;
   font-feature-settings: 'liga' off;
   line-height: 1.14; /* 114.286% */
   text-transform: capitalize;
+}
+
+.devsx-about-ideas .section-title-mobile {
+  display: none;
 }
 
 .devsx-about-ideas .h6 {
@@ -74,6 +83,21 @@ gap: 35px;
 }
 
 @media screen and (max-width:600px) {
+  .devsx-about-ideas .section-title {
+    display: none;
+    visibility: hidden;
+  }
+
+  .devsx-about-ideas .section-title-mobile {
+    display: block;
+    font-family: Satoshi-Medium;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.2; /* 120% */
+    text-transform: capitalize;
+  }
+
   .devsx-about-ideas .list {
     grid-template-columns: 1fr;
   }

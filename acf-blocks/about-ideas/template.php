@@ -1,6 +1,8 @@
 <?php
 $title = get_field('block_about_ideas_heading');
+$mobile_title = get_field('block_about_ideas_heading_mobile');
 $title_value = get_field('block_about_ideas_heading_value');
+$mobile_title_value = get_field('block_about_ideas_heading_value_mobile');
 $description = get_field('block_about_ideas_text');
 $items = get_field('block_about_ideas_items');
 ?>
@@ -12,6 +14,9 @@ $items = get_field('block_about_ideas_items');
         <?php if ($title):?>
           <<?php echo $title_value?> class="wow fadeIn section-title" data-wow-delay="0.1s"><?php echo $title; ?></<?php echo $title_value?>>
         <?php endif;?>
+      <?php if ($mobile_title):?>
+      <<?php echo $mobile_title_value; ?> class="wow fadeIn section-title section-title-mobile" data-wow-delay="0.1s"><?php echo $mobile_title; ?></<?php echo $mobile_title_value;?>>
+    <?php endif;?>
       </div>
 
       <div class="col-50">

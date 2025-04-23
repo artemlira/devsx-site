@@ -8,23 +8,30 @@ function devsx_register_acf_blocks() {
     [
       'slug'        => 'services-hero',
       'title'       => __('DevsX - Services Hero Section', 'devsx'),
-      'description' => __('Heding and text with media', 'devsx'),
+      'description' => __('Heading and text with media', 'devsx'),
       'icon'        => 'cover-image',
       'keywords'    => ['hero', 'banner', 'heading']
     ],
     [
       'slug'        => 'about-hero',
       'title'       => __('DevsX - About Hero Section', 'devsx'),
-      'description' => __('Heding and text with media', 'devsx'),
+      'description' => __('Heading and text with media', 'devsx'),
       'icon'        => 'cover-image',
       'keywords'    => ['hero', 'banner', 'heading', 'about']
     ],
     [
       'slug'        => 'about-ideas',
       'title'       => __('DevsX - About Our Ideas Section', 'devsx'),
-      'description' => __('Heding and text with media', 'devsx'),
+      'description' => __('Heading and text with media', 'devsx'),
       'icon'        => 'cover-image',
       'keywords'    => ['about', 'ideas']
+    ],
+    [
+      'slug'        => 'our-clients',
+      'title'       => __('DevsX - Our Clients Section', 'devsx'),
+      'description' => __('Heading and text with media', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['about', 'clients']
     ],
     [
       'slug'        => 'services-about',
