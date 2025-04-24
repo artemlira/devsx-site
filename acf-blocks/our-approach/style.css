@@ -11,6 +11,7 @@
 .devsx-our-approach .section-content {
   display: flex;
   gap: 24px;
+  justify-content: space-between;
   margin-top: 48px;
 }
 
@@ -34,7 +35,7 @@
 
 .devsx-our-approach .section-list {
   display: flex;
-  flex: 1 1 50%;
+  flex: 0 1 630px;
   flex-direction: column;
   gap: 24px;
   padding: 0;

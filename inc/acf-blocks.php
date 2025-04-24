@@ -41,6 +41,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['about', 'approach']
     ],
     [
+      'slug'        => 'our-culture',
+      'title'       => __('DevsX - Our Culture Section', 'devsx'),
+      'description' => __('Heading and text and author', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['about', 'culture']
+    ],
+    [
       'slug'        => 'services-about',
       'title'       => __('DevsX - Services About', 'devsx'),
       'description' => __('About us block', 'devsx'),

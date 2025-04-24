@@ -4,12 +4,14 @@
 }
 
 .devsx-our-clients .section-title {
+  padding-bottom: 24px;
   font-family: Satoshi-Medium;
   font-size: clamp(40px, 32.4898px + 1.6327vw, 56px);
   font-style: normal;
   font-weight: 500;
   line-height: 1.14; /* 114.286% */
   text-transform: capitalize;
+  border-bottom: 1px solid rgb(240 243 250 / 16%);
 }
 
 .devsx-our-clients .section-content {

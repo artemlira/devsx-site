@@ -1,0 +1,83 @@
+.devsx-our-culture {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  background: #070B12;
+}
+
+.devsx-our-culture .container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.devsx-our-culture .section-title {
+  flex: 1 1 50%;
+}
+
+.devsx-our-culture .section-content {
+  flex: 0 1 627px;
+}
+
+.devsx-our-culture .author-quote {
+  font-family: Satoshi-Regular;
+  font-size: clamp(20px, 18.1224px + 0.4082vw, 24px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.33; /* 133.333% */
+  color: var(--e-global-color-text);
+}
+
+.devsx-our-culture .section-author-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.devsx-our-culture .author-image {
+  width: 64px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.devsx-our-culture .author-image img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: centers;
+}
+
+.devsx-our-culture .author-name {
+  padding: 0;
+  margin: 0;
+  font-family: Satoshi-Bold;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4; /* 140% */
+  color: var(--e-global-color-text);
+}
+
+.devsx-our-culture .author-post {
+  padding: 0;
+  margin: 8px 0 0;
+  font-family: Satoshi-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.44; /* 144.444% */
+  color: var(--e-global-color-text-09);
+}
+
+@media screen and (max-width:768px) {
+  .devsx-our-culture .container {
+   flex-direction: column;
+  }
+
+  .devsx-our-culture .section-content {
+    flex: 1 1 auto;
+  }
+}
