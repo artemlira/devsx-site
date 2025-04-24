@@ -29,9 +29,16 @@ function devsx_register_acf_blocks() {
     [
       'slug'        => 'our-clients',
       'title'       => __('DevsX - Our Clients Section', 'devsx'),
-      'description' => __('Heading and text with media', 'devsx'),
+      'description' => __('Heading and text', 'devsx'),
       'icon'        => 'cover-image',
       'keywords'    => ['about', 'clients']
+    ],
+    [
+      'slug'        => 'our-approach',
+      'title'       => __('DevsX - Our Approach Section', 'devsx'),
+      'description' => __('Heading and text', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['about', 'approach']
     ],
     [
       'slug'        => 'services-about',
