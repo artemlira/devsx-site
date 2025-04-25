@@ -1,0 +1,108 @@
+.devsx-our-team {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.devsx-our-team .container {
+  position: relative;
+}
+
+.devsx-our-team .section-title {
+  margin-bottom: clamp(20px, 10.6122px + 2.0408vw, 40px);
+}
+
+.devsx-our-team .item-image-wrapper {
+  width: 306px;
+   height: 390px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.devsx-our-team .item-image {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.devsx-our-team .item-info-wrapper p {
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.devsx-our-team .item-name {
+  font-family: Satoshi-Bold;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 1.4; /* 140% */
+  color: var(--e-global-color-text);
+}
+
+.devsx-our-team .item-post {
+  font-family: Satoshi-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.44; /* 144.444% */
+  color: var(--e-global-color-text-09);
+}
+
+.devsx-our-team .swiper {
+  position: static;
+}
+
+.devsx-our-team .swiper-button-next,
+.devsx-our-team .swiper-button-prev {
+  top: 38px;
+  width: 64px;
+  height: 64px;
+  background-color: #070B12;
+  border-radius: 50%;
+}
+
+.devsx-our-team .swiper-button-prev {
+  right: 78px;
+  left: initial;
+}
+
+.devsx-our-team .swiper-button-prev::after,
+.devsx-our-team .swiper-button-next::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'%3E%3Cpath d='M6.57191 16.0016L25.4281 16.0016M25.4281 16.0016L16.9428 7.51632M25.4281 16.0016L16.9428 24.4869' stroke='%23F0F3FA' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+.devsx-our-team .swiper-button-prev::after {
+  transform: rotate(180deg);
+}
+
+.devsx-our-team .swiper-button-next:hover::after ,
+.devsx-our-team .swiper-button-prev:hover::after {
+  opacity: 1;
+}
+
+@media screen and (max-width:1440px) {
+  .devsx-our-team .our-team-slider-wrap {
+    margin-right: -50px;
+  }
+}
+
+@media screen and (max-width:998px) {
+  .devsx-our-team .swiper-button-next,
+  .devsx-our-team .swiper-button-prev {
+    top: calc(100% + 80px);
+  }
+
+  .devsx-our-team .swiper-button-prev {
+    right: initial;
+    left: calc(50% - 68px);
+  }
+
+  .devsx-our-team .swiper-button-next {
+    right: calc(50% - 68px);
+    left: initial;
+  }
+}

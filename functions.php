@@ -146,6 +146,7 @@ function devsx_theme_scripts() {
   // CSS
   wp_enqueue_style('devsx-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
   wp_enqueue_style('devsx-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+  wp_enqueue_style('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.css');
   wp_enqueue_style( 'devsx-style-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION );
   wp_enqueue_style( 'devsx-theme-style-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION );
   wp_enqueue_style( 'devsx-theme-style-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION );
@@ -154,6 +155,7 @@ function devsx_theme_scripts() {
   // JS
   wp_enqueue_script('devsx-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
   wp_enqueue_script('anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
+  wp_enqueue_script('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.js', array('jquery'), '7.4.0', true);
 
   // Регистрируем скрипт dotlottie-player, но не подключаем его сразу
   if (!is_admin()) {

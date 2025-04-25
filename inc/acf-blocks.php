@@ -48,6 +48,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['about', 'culture']
     ],
     [
+      'slug'        => 'our-team-slider',
+      'title'       => __('DevsX - Our Team Slider Section', 'devsx'),
+      'description' => __('Heading and slider', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['about', 'team', 'slider']
+    ],
+    [
       'slug'        => 'services-about',
       'title'       => __('DevsX - Services About', 'devsx'),
       'description' => __('About us block', 'devsx'),
