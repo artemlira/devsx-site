@@ -55,6 +55,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['about', 'team', 'slider']
     ],
     [
+      'slug'        => 'contacts-bottom',
+      'title'       => __('DevsX - Contacts Bottom Section', 'devsx'),
+      'description' => __('Heading, buttons and image', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['page', 'bottom', 'contacts']
+    ],
+    [
       'slug'        => 'services-about',
       'title'       => __('DevsX - Services About', 'devsx'),
       'description' => __('About us block', 'devsx'),
