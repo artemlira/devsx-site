@@ -61,8 +61,6 @@
     margin: 0;
     font-family: Satoshi-Medium;
     font-size: 64px;
-    font-weight: 500;
-    line-height: 72px;
 }
 
 h2,
@@ -70,8 +68,6 @@ h2,
     margin: 0;
     font-family: Satoshi-Medium;
     font-size: 40px;
-    font-weight: 500;
-    line-height: 48px;
 }
 
 h3,
@@ -80,7 +76,6 @@ h3,
     font-family: Satoshi-Medium;
     font-size: 36px;
     font-weight: 500;
-    line-height: 40px;
 }
 
 h4,
@@ -89,7 +84,6 @@ h4,
     font-family: Satoshi-Regular;
     font-size: 34px;
     font-weight: 400;
-    line-height: 40px;
 }
 
 h5,
@@ -98,7 +92,6 @@ h5,
     font-family: Satoshi-Medium;
     font-size: 32px;
     font-weight: 500;
-    line-height: 40px;
 }
 
 h6,
@@ -107,56 +100,49 @@ h6,
     font-family: Satoshi-Medium;
     font-size: 28px;
     font-weight: 500;
-    line-height: 36px;
+
 }
 
 .subheading-1{
     font-family: Satoshi-Medium;
     font-size: 24px;
     font-weight: 500;
-    line-height: 32px;
 }
 
 .subheading-2{
     font-family: Satoshi-Regular;
     font-size: 20px;
     font-weight: 400;
-    line-height: 28px;
 }
 
 .body-text-1{
     font-family: Satoshi-Medium;
     font-size: 20px;
     font-weight: 500;
-    line-height: 28px;
 }
 
 .body-text-2{
     font-family: Satoshi-Regular;
     font-size: 18px;
     font-weight: 400;
-    line-height: 28px;
 }
 
 .body-text-3{
     font-family: Satoshi-Regular;
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px;
 }
 
 .link-text{
     font-family: Satoshi-Bold;
     font-size: 16px;
     font-weight: 700;
-    line-height: 24px;
 }
 
 .caption-text{
     font-family: Satoshi-Bold;
     font-size: 16px;
     font-weight: 700;
-    line-height: 24px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
@@ -1010,6 +996,53 @@ h6,
 }
 
 @media screen and (max-width:768px) {
+  h1,
+  .h1{
+    margin: 0;
+    font-family: Satoshi-Medium;
+    font-size: 48px;
+  }
+
+  h2,
+  .h2{
+    margin: 0;
+    font-family: Satoshi-Medium;
+    font-size: 40px;
+  }
+
+  h3,
+  .h3{
+    margin: 0;
+    font-family: Satoshi-Medium;
+    font-size: 34px;
+    font-weight: 500;
+  }
+
+  h4,
+  .h4{
+    margin: 0;
+    font-family: Satoshi-Regular;
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  h5,
+  .h5{
+    margin: 0;
+    font-family: Satoshi-Medium;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  h6,
+  .h6{
+    margin: 0;
+    font-family: Satoshi-Medium;
+    font-size: 24px;
+    font-weight: 500;
+
+  }
+
   #page {
     padding-top: 50px;
   }

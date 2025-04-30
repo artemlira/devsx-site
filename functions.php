@@ -521,7 +521,7 @@ function register_career_post_type()
       'not_found_in_trash' => 'No vacancies found in the basket',
     ),
     'public'              => true,
-    'has_archive'         => true,
+    'has_archive'         => false,
     'publicly_queryable'  => true,
     'show_ui'             => true,
     'show_in_menu'        => true,
