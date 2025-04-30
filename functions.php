@@ -157,7 +157,6 @@ function devsx_theme_scripts() {
   wp_enqueue_script('anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
   wp_enqueue_script('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.js', array('jquery'), '7.4.0', true);
 
-  // Регистрируем скрипт dotlottie-player, но не подключаем его сразу
   if (!is_admin()) {
     wp_enqueue_script( 'devsx-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
     wp_register_script('devsx-dotlottie-player-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array(), null, true);
@@ -171,12 +170,10 @@ function devsx_theme_scripts() {
   wp_enqueue_script( 'devsx-theme-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true );
 }
 
-// Добавляем фильтр для изменения тега script
 add_filter('script_loader_tag', 'add_module_type_to_scripts', 10, 3);
 
 function add_module_type_to_scripts($tag, $handle, $src) {
   if ('devsx-dotlottie-player-js' === $handle) {
-    // Заменяем стандартный тег script на тег с атрибутом type="module"
     $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
   }
   return $tag;
@@ -261,21 +258,16 @@ function devsx_breadcrumbs() {
 
     } elseif (is_single()) {
 
-      // Проверяем тип записи
       if (get_post_type() === 'post') {
-        // Для обычных постов блога
         $blog_page_id = get_option('page_for_posts');
         if ($blog_page_id) {
-          // Если установлена статическая страница для записей
           echo '<a href="' . get_permalink($blog_page_id) . '">' . get_the_title($blog_page_id) . '</a>';
         } else {
-          // Если нет статической страницы, используем название "Блог"
-          echo '<a href="' . get_post_type_archive_link('post') . '">Блог</a>';
+          echo '<a href="' . get_post_type_archive_link('post') . '">Blog</a>';
         }
 
         echo '<span class="separator"> / </span>';
 
-        // Добавляем категорию, если она есть
         $category = get_the_category();
         if ($category) {
           $cat_link = get_category_link($category[0]->term_id);
@@ -283,19 +275,16 @@ function devsx_breadcrumbs() {
           echo '<span class="separator"> / </span>';
         }
       } elseif (get_post_type() === 'cases') {
-        // Для кастомного типа cases
         echo '<a href="' . get_post_type_archive_link('cases') . '">' . apply_filters('cases_archive_title', 'Cases') . '</a>';
         echo '<span class="separator"> / </span>';
 
-        // Добавляем термин таксономии cases_rank, если он есть
         $terms = get_the_terms(get_the_ID(), 'cases_rank');
         if ($terms && !is_wp_error($terms)) {
-          $term = reset($terms); // берем первый термин
+          $term = reset($terms);
           echo '<a href="' . get_term_link($term) . '">' . esc_html($term->name) . '</a>';
           echo '<span class="separator"> / </span>';
         }
       } else {
-        // Для других типов записей
         $post_type_obj = get_post_type_object(get_post_type());
         if ($post_type_obj) {
           echo '<a href="' . get_post_type_archive_link(get_post_type()) . '">' . esc_html($post_type_obj->labels->name) . '</a>';
@@ -307,12 +296,11 @@ function devsx_breadcrumbs() {
 
     } elseif (is_category()) {
 
-      // Добавляем ссылку на страницу блога перед категорией
       $blog_page_id = get_option('page_for_posts');
       if ($blog_page_id) {
         echo '<a href="' . get_permalink($blog_page_id) . '">' . get_the_title($blog_page_id) . '</a>';
       } else {
-        echo '<a href="' . home_url('/') . '">Блог</a>';
+        echo '<a href="' . home_url('/') . '">Blog</a>';
       }
 
       echo '<span class="separator"> / </span>';
@@ -320,12 +308,11 @@ function devsx_breadcrumbs() {
 
     } elseif (is_tag()) {
 
-      // Добавляем ссылку на страницу блога перед тегом
       $blog_page_id = get_option('page_for_posts');
       if ($blog_page_id) {
         echo '<a href="' . get_permalink($blog_page_id) . '">' . get_the_title($blog_page_id) . '</a>';
       } else {
-        echo '<a href="' . home_url('/') . '">Блог</a>';
+        echo '<a href="' . home_url('/') . '">Blog</a>';
       }
 
       echo '<span class="separator"> / </span>';
@@ -335,7 +322,6 @@ function devsx_breadcrumbs() {
       $archive_title = apply_filters('cases_archive_title', 'Cases');
       echo '<span class="current">' . esc_html($archive_title) . '</span>';
     } elseif (is_home()) {
-      // Для главной страницы блога (архив постов)
       $blog_page_id = get_option('page_for_posts');
       if ($blog_page_id) {
         echo '<span class="current">' . get_the_title($blog_page_id) . '</span>';
@@ -343,7 +329,6 @@ function devsx_breadcrumbs() {
         echo '<span class="current">Блог</span>';
       }
     } elseif (is_tax()) {
-      // Для страниц таксономий
       $term = get_queried_object();
       $taxonomy = get_taxonomy($term->taxonomy);
       $post_type = $taxonomy->object_type[0];
@@ -356,14 +341,12 @@ function devsx_breadcrumbs() {
 
       echo '<span class="current">' . esc_html($term->name) . '</span>';
     } elseif (is_post_type_archive()) {
-      // Для других типов архивов
       $post_type_obj = get_post_type_object(get_post_type());
       if ($post_type_obj) {
         echo '<span class="current">' . esc_html($post_type_obj->labels->name) . '</span>';
       }
     } elseif (is_date()) {
-      // Для архивов по дате
-      echo '<a href="' . get_permalink(get_option('page_for_posts')) . '">Блог</a>';
+      echo '<a href="' . get_permalink(get_option('page_for_posts')) . '">Blog</a>';
       echo '<span class="separator"> / </span>';
 
       if (is_day()) {
@@ -374,16 +357,14 @@ function devsx_breadcrumbs() {
         echo '<span class="current">' . get_the_date('Y') . '</span>';
       }
     } elseif (is_author()) {
-      // Для архивов по автору
-      echo '<a href="' . get_permalink(get_option('page_for_posts')) . '">Блог</a>';
+      echo '<a href="' . get_permalink(get_option('page_for_posts')) . '">Blog</a>';
       echo '<span class="separator"> / </span>';
       echo '<span class="current">' . get_the_author() . '</span>';
     } elseif (is_search()) {
-      // Для страницы результатов поиска
-      echo '<span class="current">Результаты поиска: ' . get_search_query() . '</span>';
+      echo '<span class="current">Search results: ' . get_search_query() . '</span>';
     } elseif (is_404()) {
       // Для страницы 404
-      echo '<span class="current">Страница не найдена</span>';
+      echo '<span class="current">Page not found</span>';
     }
 
     echo '</nav>';
@@ -401,17 +382,17 @@ function my_custom_init_cases()
 {
   register_taxonomy('cases_rank', 'cases', array(
     'labels' => array(
-      'name' => 'Cases Categories', // основное название во множественном числе
-      'singular_name' => 'Case Category', // название единичного элемента таксономии
-      'menu_name' => 'Cases Categories', // Название в меню. По умолчанию: name.
+      'name' => 'Cases Categories',
+      'singular_name' => 'Case Category',
+      'menu_name' => 'Cases Categories',
       'all_items' => 'Cases Categories',
       'edit_item' => 'Edit Case Category',
-      'view_item' => 'View Case Category', // текст кнопки просмотра записи на сайте (если поддерживается типом)
+      'view_item' => 'View Case Category',
       'update_item' => 'Update Case Category',
       'add_new_item' => 'Add New Case Category',
       'new_item_name' => 'New Name Case Category',
       'search_items' => 'Search Cases Categories',
-      'popular_items' => 'Popular Cases Categories', // для таксономий без иерархий
+      'popular_items' => 'Popular Cases Categories',
       'not_found' => 'Not found Case Category',
       'back_to_items' => '← Back to Cases Categories',
     ),
@@ -439,15 +420,15 @@ function my_custom_init_cases()
     ),
     'show_in_quick_edit' => true,
     'show_admin_column' => true,
-    'show_in_rest' => true, // Позволяет использовать таксономию в редакторе Gutenberg
-    'hierarchical' => false, // false для тегов (неиерархическая структура)
-    'rewrite' => array('slug' => 'case-tag'), // URL для страниц тегов
+    'show_in_rest' => true,
+    'hierarchical' => false,
+    'rewrite' => array('slug' => 'case-tag'),
   ));
 
   register_post_type('cases', array(
     'labels' => array(
-      'name' => 'Cases', // Основное название типа записи
-      'singular_name' => 'Case', // отдельное название записи типа services
+      'name' => 'Cases',
+      'singular_name' => 'Case',
       'add_new' => 'Add a Case',
       'add_new_item' => 'Add a Case',
       'edit_item' => 'Edit a Case',
@@ -492,126 +473,10 @@ if (function_exists('acf_add_options_page')) {
     'menu_title'         => __('Blog Settings', 'devsx-theme'),
     'menu_slug'          => 'blog-settings',
     'capability'         => 'edit_posts',
-    'parent_slug'        => 'edit.php', // Родительское меню для стандартных постов
+    'parent_slug'        => 'edit.php',
     'position'           => false,
     'icon_slug'          => false
   ));
-}
-
-// AJAX обработчик для загрузки дополнительных кейсов в function.php
-function load_more_cases_ajax() {
-  $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-  $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 8;
-  $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
-  $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
-
-  $args = array(
-    'post_type' => 'cases',
-    'posts_per_page' => $posts_per_page,
-    'offset' => $offset,
-  );
-
-  // Добавляем фильтрацию по категории, если она выбрана
-  if (!empty($category)) {
-    $args['tax_query'] = array(
-      array(
-        'taxonomy' => 'cases_rank',
-        'field' => 'slug',
-        'terms' => $category,
-      ),
-    );
-  }
-
-  $query = new WP_Query($args);
-
-  if ($query->have_posts()) {
-    while ($query->have_posts()) {
-      $query->the_post();
-      ?>
-      <li class="section-cases-item">
-        <?php if (has_post_thumbnail()) : ?>
-          <a class="section-cases-item-image-wrapper" href="<?php the_permalink(); ?>"
-             title="<?php the_title_attribute(); ?>">
-            <?php the_post_thumbnail(); ?>
-          </a>
-        <?php else: ?>
-          <a class="section-cases-item-image-wrapper" href="<?php the_permalink(); ?>">
-            <img
-              src="<?php echo esc_url(get_template_directory_uri()); ?>/images/content/No-Image-Placeholder.png"
-              alt="No image available"
-              loading="lazy"
-            >
-          </a>
-        <?php endif; ?>
-        <h3 class="section-cases-item-title"><?php the_title(); ?></h3>
-        <?php
-        $terms = get_the_terms(get_the_ID(), 'cases_tags');
-
-        if ($terms && !is_wp_error($terms)): ?>
-          <div class="section-cases-item-tags">
-            <?php foreach($terms as $term): ?>
-              <span class="section-cases-item-tag"><?= $term->name; ?></span>
-            <?php endforeach; ?>
-          </div>
-        <?php endif; ?>
-      </li>
-      <?php
-    }
-  }
-
-  wp_reset_postdata();
-  die();
-}
-
-add_action('wp_ajax_load_more_cases', 'load_more_cases_ajax'); // Для авторизованных
-add_action('wp_ajax_nopriv_load_more_cases', 'load_more_cases_ajax'); // Для неавторизованных
-
-// Функция для получения терминов в порядке их добавления к посту
-// Сохраняем порядок терминов в мета-данных поста
-function save_term_order_on_post_save($post_id, $post, $update) {
-  // Проверяем тип поста
-  if ($post->post_type !== 'cases') {
-    return;
-  }
-
-  // Получаем все теги, назначенные посту
-  $tags = get_the_terms($post_id, 'cases_tags');
-
-  if (!empty($tags) && !is_wp_error($tags)) {
-    $tag_ids = array();
-    foreach ($tags as $tag) {
-      $tag_ids[] = $tag->term_id;
-    }
-
-    // Сохраняем ID тегов в том порядке, в котором они отображаются
-    update_post_meta($post_id, '_cases_tags_order', $tag_ids);
-  }
-}
-add_action('save_post', 'save_term_order_on_post_save', 10, 3);
-
-// Получаем теги в пользовательском порядке
-function get_terms_in_order($post_id, $taxonomy) {
-  if ($taxonomy !== 'cases_tags') {
-    return wp_get_object_terms($post_id, $taxonomy);
-  }
-
-  // Получаем сохраненный порядок тегов
-  $tag_ids_order = get_post_meta($post_id, '_cases_tags_order', true);
-
-  if (!empty($tag_ids_order)) {
-    // Если порядок сохранен, получаем термины по этому порядку
-    $terms = array();
-    foreach ($tag_ids_order as $term_id) {
-      $term = get_term($term_id, $taxonomy);
-      if (!is_wp_error($term) && !empty($term)) {
-        $terms[] = $term;
-      }
-    }
-    return $terms;
-  } else {
-    // Если порядок не сохранен, возвращаем термины в стандартном порядке
-    return wp_get_object_terms($post_id, $taxonomy);
-  }
 }
 
 /**
@@ -753,3 +618,135 @@ function devsx_load_more_posts() {
 
 add_action('wp_ajax_devsx_load_more_posts', 'devsx_load_more_posts');
 add_action('wp_ajax_nopriv_devsx_load_more_posts', 'devsx_load_more_posts');
+
+/**
+ * ====================================================================================================================
+ * Register scripts and styles for Ajax request of cases page
+ */
+function devsx_cases_scripts() {
+  wp_register_script(
+    'cases-load-more',
+    get_template_directory_uri() . '/js/cases-load-more.js',
+    array('jquery'),
+    '1.0.0',
+    true
+  );
+
+  // Localize the script with new data
+  $script_data = array(
+    'ajax_url' => admin_url('admin-ajax.php'),
+    'nonce' => wp_create_nonce('cases_load_more_nonce')
+  );
+  wp_localize_script('cases-load-more', 'ajax_object', $script_data);
+
+  if (is_post_type_archive('cases') || is_tax('cases_rank') || is_tax('cases_tags')) {
+    wp_enqueue_script('cases-load-more');
+  }
+}
+add_action('wp_enqueue_scripts', 'devsx_cases_scripts');
+
+/**
+ * AJAX handler for loading additional cases
+ */
+function load_more_cases() {
+  // Check security nonce
+  if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'cases_load_more_nonce')) {
+    wp_send_json_error('Security check failed');
+    die();
+  }
+
+  $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+  $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 8;
+  $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+  $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+
+  $args = array(
+    'post_type' => 'cases',
+    'posts_per_page' => $posts_per_page,
+    'paged' => $page + 1,
+    'post_status' => 'publish',
+  );
+
+  // Add category filter if specified
+  if (!empty($category)) {
+    $args['tax_query'] = array(
+      array(
+        'taxonomy' => 'cases_rank',
+        'field' => 'slug',
+        'terms' => $category,
+      )
+    );
+  }
+
+  $query = new WP_Query($args);
+  $response = array();
+  $html = '';
+  $count = 0;
+
+  if ($query->have_posts()) {
+    ob_start();
+
+    while ($query->have_posts()) {
+      $query->the_post();
+      $count++;
+      ?>
+      <li class="section-cases-item">
+        <?php if (has_post_thumbnail()) : ?>
+          <a class="section-cases-item-image-wrapper" href="<?php the_permalink(); ?>"
+             title="<?php the_title_attribute(); ?>">
+            <?php the_post_thumbnail('large'); ?>
+          </a>
+        <?php else: ?>
+          <a class="section-cases-item-image-wrapper" href="<?php the_permalink(); ?>">
+            <img
+                src="<?php echo esc_url(get_template_directory_uri()); ?>/images/content/No-Image-Placeholder.png"
+                alt="No image available"
+                loading="lazy"
+            >
+          </a>
+        <?php endif; ?>
+        <div class="section-cases-item-info-wrapper">
+          <h3 class="section-cases-item-title"><?php the_title(); ?></h3>
+          <?php
+          $terms = get_terms_in_order(get_the_ID(), 'cases_tags');
+
+          if ($terms && !is_wp_error($terms)): ?>
+            <div class="section-cases-item-tags">
+              <?php foreach($terms as $term): ?>
+                <span class="section-cases-item-tag"><?= $term->name; ?></span>
+              <?php endforeach; ?>
+            </div>
+          <?php endif; ?>
+        </div>
+      </li>
+      <?php
+    }
+
+    $html = ob_get_clean();
+    wp_reset_postdata();
+  }
+
+  wp_send_json_success(array(
+    'html' => $html,
+    'count' => $count,
+    'has_more' => ($count >= $posts_per_page)
+  ));
+
+  die();
+}
+
+add_action('wp_ajax_load_more_cases', 'load_more_cases');
+add_action('wp_ajax_nopriv_load_more_cases', 'load_more_cases');
+
+/**
+ * Helper function to get taxonomy terms in the order they were assigned to the post
+ */
+function get_terms_in_order($post_id, $taxonomy) {
+  $terms = get_the_terms($post_id, $taxonomy);
+
+  if (!$terms || is_wp_error($terms)) {
+    return array();
+  }
+
+  return $terms;
+}
