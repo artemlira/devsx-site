@@ -457,6 +457,87 @@ function my_custom_init_cases()
   ));
 }
 
+//Registering a new Post Type "Career"
+add_action('init', 'register_career_post_type');
+
+function register_career_post_type()
+{
+  register_taxonomy('career_location', 'career', array(
+    'labels' => array(
+      'name'              => 'Locations',
+      'singular_name'     => 'Location',
+      'search_items'      => 'Search locations',
+      'all_items'         => 'All locations',
+      'parent_item'       => 'Parent location',
+      'parent_item_colon' => 'Parent location:',
+      'edit_item'         => 'Edit location',
+      'update_item'       => 'Update location',
+      'add_new_item'      => 'Add new location',
+      'new_item_name'     => 'New location name',
+      'menu_name'         => 'Locations',
+    ),
+    'hierarchical'      => true,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array('slug' => 'career-location'),
+    'show_in_rest'      => true,
+  ));
+
+  register_taxonomy('career_level', 'career', array(
+    'labels' => array(
+      'name'              => 'Levels',
+      'singular_name'     => 'Level',
+      'search_items'      => 'Search levels',
+      'all_items'         => 'All levels',
+      'parent_item'       => 'Parental level',
+      'parent_item_colon' => 'Parental level:',
+      'edit_item'         => 'Edit level',
+      'update_item'       => 'Refresh level',
+      'add_new_item'      => 'Add new level',
+      'new_item_name'     => 'New level name',
+      'menu_name'         => 'Levels',
+    ),
+    'hierarchical'      => true,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array('slug' => 'career-level'),
+    'show_in_rest'      => true,
+  ));
+
+  register_post_type('career', array(
+    'labels' => array(
+      'name'               => 'Career',
+      'singular_name'      => 'Vacancy',
+      'menu_name'          => 'DevsX Career',
+      'add_new'            => 'Add a vacancy',
+      'add_new_item'       => 'Add a new vacancy',
+      'edit_item'          => 'Edit vacancy',
+      'new_item'           => 'New vacancy',
+      'view_item'          => 'View vacancy',
+      'search_items'       => 'Search vacancies',
+      'not_found'          => 'No vacancies found',
+      'not_found_in_trash' => 'No vacancies found in the basket',
+    ),
+    'public'              => true,
+    'has_archive'         => true,
+    'publicly_queryable'  => true,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'show_in_nav_menus'   => true,
+    'show_in_admin_bar'   => true,
+    'menu_position'       => 30,
+    'menu_icon'           => 'dashicons-id-alt',
+    'capability_type'     => 'post',
+    'hierarchical'        => false,
+    'supports'            => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
+    'rewrite'             => array('slug' => 'career'),
+    'show_in_rest'        => true,
+    'taxonomies' => array('career_location', 'career_level'),
+  ));
+}
+
 
 if (function_exists('acf_add_options_page')) {
   acf_add_options_sub_page(array(
@@ -474,6 +555,15 @@ if (function_exists('acf_add_options_page')) {
     'menu_slug'          => 'blog-settings',
     'capability'         => 'edit_posts',
     'parent_slug'        => 'edit.php',
+    'position'           => false,
+    'icon_slug'          => false
+  ));
+  acf_add_options_sub_page(array(
+    'page_title'         => __('Career Settings', 'devsx-theme'),
+    'menu_title'         => __('Career Settings', 'devsx-theme'),
+    'menu_slug'          => 'career-settings',
+    'capability'         => 'edit_posts',
+    'parent_slug'        => 'edit.php?post_type=career',
     'position'           => false,
     'icon_slug'          => false
   ));
