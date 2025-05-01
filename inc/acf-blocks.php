@@ -27,6 +27,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['hero', 'heading', 'career']
     ],
     [
+      'slug'        => 'career-positions',
+      'title'       => __('DevsX - Career Open Positions Section', 'devsx'),
+      'description' => __('Heading, subtitle, text and open positions', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['vacancy', 'positions', 'career']
+    ],
+    [
       'slug'        => 'about-ideas',
       'title'       => __('DevsX - About Our Ideas Section', 'devsx'),
       'description' => __('Heading and text with media', 'devsx'),
