@@ -1,0 +1,117 @@
+.devsx-career-hiring-process {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.swiper-hero-container {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding-right: 6%;
+  margin-bottom: 40px;
+}
+
+.career-hiring-process-slider-wrap {
+   margin-right: -6%;
+}
+
+.swiper-buttons {
+  display: flex;
+  min-width: 150px;
+  min-height: 70px;
+}
+
+.career-hiring-process-swiper-button-next,
+.career-hiring-process-swiper-button-prev {
+  position: static;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  background-color: #070B12;
+  border-radius: 50%;
+  transition-duration: 0.5s;
+}
+
+.career-hiring-process-swiper-button-next:hover,
+.career-hiring-process-swiper-button-prev:hover {
+  background-color: var(--e-global-color-text-secondary);
+}
+
+.career-hiring-process-swiper-button-next::after,
+.career-hiring-process-swiper-button-prev::after {
+  content: none;
+}
+
+.career-hiring-process-slider-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  counter-reset: custom-counter;
+}
+
+.devsx-career-hiring-process .slider-item {
+  position: relative;
+counter-increment: custom-counter;
+}
+
+.devsx-career-hiring-process .slider-item::before {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-family: Satoshi-Medium;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' off;
+  line-height: 1.42; /* 142.857% */
+  color: rgb(240 243 250 / 32%);
+  content: counter(custom-counter, decimal-leading-zero);
+}
+
+.devsx-career-hiring-process .slider-item-card {
+  padding: 24px;
+  background: #070B12;
+  border-radius: 12px;
+}
+
+.devsx-career-hiring-process .item-heading {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-family: Satoshi-Bold;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 1.3; /* 41.6px */
+  color: var(--e-global-color-text);
+}
+
+.devsx-career-hiring-process .item-text {
+  margin: 0;
+  font-family: Satoshi-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: 'liga' off;
+  line-height: 1.4; /* 25.2px */
+  color: rgb(240 243 250 / 90%);
+}
+
+@media screen and (max-width:768px) {
+  .swiper-buttons {
+    display: none;
+    visibility: hidden;
+  }
+
+  .career-hiring-process-slider-container {
+    flex-direction: column;
+  }
+}
+

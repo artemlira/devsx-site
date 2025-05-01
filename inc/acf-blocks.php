@@ -69,6 +69,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['about', 'team', 'slider']
     ],
     [
+      'slug'        => 'career-hiring-process',
+      'title'       => __('DevsX - Our Hiring Process Slider Section', 'devsx'),
+      'description' => __('Heading and slider', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['career', 'hiring', 'slider']
+    ],
+    [
       'slug'        => 'contacts-bottom',
       'title'       => __('DevsX - Contacts Bottom Section', 'devsx'),
       'description' => __('Heading, buttons and image', 'devsx'),
