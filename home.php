@@ -176,7 +176,7 @@ if (!empty($current_tag)) {
 $query = new WP_Query($args);
 $total_posts = $query->found_posts;
 $max_pages = ceil($total_posts / $posts_per_page);
-$delay_counter = 0.8;
+$delay_counter = 0;
 $delay_increment = 0.1;
 
 if ($query->have_posts()) :
