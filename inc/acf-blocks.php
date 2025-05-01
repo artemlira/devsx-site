@@ -76,6 +76,13 @@ function devsx_register_acf_blocks() {
       'keywords'    => ['career', 'hiring', 'slider']
     ],
     [
+      'slug'        => 'career-benefits',
+      'title'       => __('DevsX - Career Our Benefits Slider Section', 'devsx'),
+      'description' => __('Heading and slider', 'devsx'),
+      'icon'        => 'cover-image',
+      'keywords'    => ['career', 'benefits', 'slider']
+    ],
+    [
       'slug'        => 'contacts-bottom',
       'title'       => __('DevsX - Contacts Bottom Section', 'devsx'),
       'description' => __('Heading, buttons and image', 'devsx'),
