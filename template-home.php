@@ -241,8 +241,9 @@ get_header(); ?>
             <p class="body-text-3 wow fadeInUp" data-wow-delay="0.3s">
                 Drawing on our team's expertise, we develop tailored solutions that bring real benefits to business. 
             </p>
-            <a href="#">
-				<button class="btn-76 wow fadeInUp" data-wow-delay="0.4s"><span>More About Us</span><i></i></button>
+          <?php $button = get_field('page_home_cta_link');?>
+            <a href="<?php echo $button['url'];?>" target="<?php echo $button['target'];?>">
+				<button class="btn-76 wow fadeInUp" data-wow-delay="0.4s"><span><?php echo $button['title']; ?></span><i></i></button>
 			</a>
         </div>
     </div>
@@ -578,7 +579,7 @@ get_header(); ?>
             <span class="opacity-032">Industry</span><br>Trends & News
             </h2>
             <div class="btn-wrap  wow fadeInUp" data-wow-delay="0.3s">
-                <a href="#">
+                <a href="/blog">
                     <button class="btn-64 btn-blue-text"><span>Read All Articles</span><i></i></button>
                 </a>
             </div>

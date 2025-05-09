@@ -1,6 +1,5 @@
 .career-hero {
   padding-top: 48px;
-  padding-bottom: 48px;
 }
 
 .career-hero-title {
@@ -8,6 +7,7 @@
 }
 
 .career-hero-descripton {
+  margin: 0;
   font-family: Satoshi-Regular;
   font-size: 24px;
   font-style: normal;

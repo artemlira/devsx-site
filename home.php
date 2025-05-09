@@ -78,76 +78,7 @@ $search_query = get_search_query();
     </ul>
   </div>
 
-  <div class="editors-choice-section">
-  <<?php echo $title_editor_choice_value; ?> class="editors-choice-title"><?php echo $title_editor_choice; ?></<?php echo $title_editor_choice_value; ?>>
-    <div class="editors-choice-container">
-      <?php
-      $editors_choice_args = array(
-        'post_type' => 'post',
-        'posts_per_page' => 5,
-        'orderby' => 'rand',
-        'tax_query' => array(
-          array(
-            'taxonomy' => 'post_tag',
-            'field' => 'slug',
-            'terms' => 'editors-choice',
-          )
-        )
-      );
-
-      $editors_choice_query = new WP_Query($editors_choice_args);
-
-      $delay_counter = 0.5;
-      $delay_increment = 0.1;
-
-      if ($editors_choice_query->have_posts()) :
-        while ($editors_choice_query->have_posts()) : $editors_choice_query->the_post();
-          $delay = number_format($delay_counter, 1) . 's';
-          ?>
-          <article class="editors-choice-post wow fadeIn" data-wow-delay="<?php echo $delay; ?>">
-            <?php if (has_post_thumbnail()) : ?>
-              <div class="editors-choice-thumbnail">
-                <a href="<?php the_permalink(); ?>">
-                  <?php the_post_thumbnail('large'); ?>
-                </a>
-              </div>
-            <?php endif; ?>
-
-            <div class="editors-choice-content-wrapper">
-              <div class="editors-choice-meta">
-                <span class="editors-choice-date"><?php echo get_the_date(); ?></span>
-              </div>
-
-              <h4 class="editors-choice-post-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h4>
-
-              <div class="editors-choice-excerpt">
-                <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
-              </div>
-              <div class="editors-read-more">
-                <a href="<?php the_permalink(); ?>">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H8M17 7V16" stroke="#F0F3FA" stroke-width="2" stroke-linecap="square"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-        <?php
-          $delay_counter += $delay_increment;
-        endwhile;
-        wp_reset_postdata();
-      else :
-        echo `<p>No "Editor/'s Choice" articles found.</p>`;
-      endif;
-      ?>
-    </div>
-  </div>
 <section class="blog-posts-section-wrapper">
-
-
-  <<?php echo $title_latest_posts_value; ?> class="blog-posts-section-title wow fadeIn" data-wow-delay="0.8s"><?php echo $title_latest_posts; ?></<?php echo $title_latest_posts_value; ?>>
 
 <?php
 $posts_per_page = 12;

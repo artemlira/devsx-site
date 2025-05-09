@@ -7,9 +7,9 @@
  * @package DevsX_Theme
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
-	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+if (!defined('_S_VERSION')) {
+  // Replace the version number of the theme on each release.
+  define('_S_VERSION', '1.0.0');
 }
 
 /**
@@ -19,88 +19,90 @@ if ( ! defined( '_S_VERSION' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function devsx_theme_setup() {
-	/*
-		* Make theme available for translation.
-		* Translations can be filed in the /languages/ directory.
-		* If you're building a theme based on DevsX Theme, use a find and replace
-		* to change 'devsx-theme' to the name of your theme in all the template files.
-		*/
-	load_theme_textdomain( 'devsx-theme', get_template_directory() . '/languages' );
+function devsx_theme_setup()
+{
+  /*
+    * Make theme available for translation.
+    * Translations can be filed in the /languages/ directory.
+    * If you're building a theme based on DevsX Theme, use a find and replace
+    * to change 'devsx-theme' to the name of your theme in all the template files.
+    */
+  load_theme_textdomain('devsx-theme', get_template_directory() . '/languages');
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+  // Add default posts and comments RSS feed links to head.
+  add_theme_support('automatic-feed-links');
 
-	/*
-		* Let WordPress manage the document title.
-		* By adding theme support, we declare that this theme does not use a
-		* hard-coded <title> tag in the document head, and expect WordPress to
-		* provide it for us.
-		*/
-	add_theme_support( 'title-tag' );
+  /*
+    * Let WordPress manage the document title.
+    * By adding theme support, we declare that this theme does not use a
+    * hard-coded <title> tag in the document head, and expect WordPress to
+    * provide it for us.
+    */
+  add_theme_support('title-tag');
 
-	/*
-		* Enable support for Post Thumbnails on posts and pages.
-		*
-		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		*/
-	add_theme_support( 'post-thumbnails' );
+  /*
+    * Enable support for Post Thumbnails on posts and pages.
+    *
+    * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+    */
+  add_theme_support('post-thumbnails');
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'devsx-theme' ),
-		)
-	);
+  // This theme uses wp_nav_menu() in one location.
+  register_nav_menus(
+    array(
+      'menu-1' => esc_html__('Primary', 'devsx-theme'),
+    )
+  );
 
-	/*
-		* Switch default core markup for search form, comment form, and comments
-		* to output valid HTML5.
-		*/
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
+  /*
+    * Switch default core markup for search form, comment form, and comments
+    * to output valid HTML5.
+    */
+  add_theme_support(
+    'html5',
+    array(
+      'search-form',
+      'comment-form',
+      'comment-list',
+      'gallery',
+      'caption',
+      'style',
+      'script',
+    )
+  );
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support(
-		'custom-background',
-		apply_filters(
-			'devsx_theme_custom_background_args',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
-		)
-	);
+  // Set up the WordPress core custom background feature.
+  add_theme_support(
+    'custom-background',
+    apply_filters(
+      'devsx_theme_custom_background_args',
+      array(
+        'default-color' => 'ffffff',
+        'default-image' => '',
+      )
+    )
+  );
 
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
+  // Add theme support for selective refresh for widgets.
+  add_theme_support('customize-selective-refresh-widgets');
 
-	/**
-	 * Add support for core custom logo.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
-	add_theme_support(
-		'custom-logo',
-		array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		)
-	);
+  /**
+   * Add support for core custom logo.
+   *
+   * @link https://codex.wordpress.org/Theme_Logo
+   */
+  add_theme_support(
+    'custom-logo',
+    array(
+      'height' => 250,
+      'width' => 250,
+      'flex-width' => true,
+      'flex-height' => true,
+    )
+  );
 }
-add_action( 'after_setup_theme', 'devsx_theme_setup' );
+
+add_action('after_setup_theme', 'devsx_theme_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -109,95 +111,103 @@ add_action( 'after_setup_theme', 'devsx_theme_setup' );
  *
  * @global int $content_width
  */
-function devsx_theme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'devsx_theme_content_width', 640 );
+function devsx_theme_content_width()
+{
+  $GLOBALS['content_width'] = apply_filters('devsx_theme_content_width', 640);
 }
-add_action( 'after_setup_theme', 'devsx_theme_content_width', 0 );
+
+add_action('after_setup_theme', 'devsx_theme_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function devsx_theme_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'devsx-theme' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'devsx-theme' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+function devsx_theme_widgets_init()
+{
+  register_sidebar(
+    array(
+      'name' => esc_html__('Sidebar', 'devsx-theme'),
+      'id' => 'sidebar-1',
+      'description' => esc_html__('Add widgets here.', 'devsx-theme'),
+      'before_widget' => '<section id="%1$s" class="widget %2$s">',
+      'after_widget' => '</section>',
+      'before_title' => '<h2 class="widget-title">',
+      'after_title' => '</h2>',
+    )
+  );
 }
-add_action( 'widgets_init', 'devsx_theme_widgets_init' );
+
+add_action('widgets_init', 'devsx_theme_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-add_action( 'wp_enqueue_scripts', 'devsx_theme_scripts' );
+add_action('wp_enqueue_scripts', 'devsx_theme_scripts');
 
-function devsx_theme_scripts() {
-  wp_enqueue_style( 'devsx-theme-style', get_stylesheet_uri(), array(), _S_VERSION );
-  wp_style_add_data( 'devsx-theme-style', 'rtl', 'replace' );
+function devsx_theme_scripts()
+{
+  wp_enqueue_style('devsx-theme-style', get_stylesheet_uri(), array(), _S_VERSION);
+  wp_style_add_data('devsx-theme-style', 'rtl', 'replace');
 
   // CSS
   wp_enqueue_style('devsx-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
   wp_enqueue_style('devsx-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
   wp_enqueue_style('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.css');
-  wp_enqueue_style( 'devsx-style-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION );
-  wp_enqueue_style( 'devsx-theme-style-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION );
-  wp_enqueue_style( 'devsx-theme-style-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION );
-  wp_enqueue_style( 'devsx-theme-style-media', get_template_directory_uri() . '/css/media.css', array(), _S_VERSION );
+  wp_enqueue_style('devsx-style-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-theme-style-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-theme-style-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-theme-style-media', get_template_directory_uri() . '/css/media.css', array(), _S_VERSION);
 
   // JS
   wp_enqueue_script('devsx-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
   wp_enqueue_script('anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
+  wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array('jquery'), null, true);
   wp_enqueue_script('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.js', array('jquery'), '7.4.0', true);
 
   if (!is_admin()) {
-    wp_enqueue_script( 'devsx-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
+    wp_enqueue_script('devsx-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true);
     wp_register_script('devsx-dotlottie-player-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array(), null, true);
     wp_enqueue_script('devsx-dotlottie-player-js');
   }
 
-  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-    wp_enqueue_script( 'comment-reply' );
+  if (is_singular() && comments_open() && get_option('thread_comments')) {
+    wp_enqueue_script('comment-reply');
   }
 
-  wp_enqueue_script( 'devsx-theme-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true );
+  wp_enqueue_script('devsx-theme-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true);
 }
 
 add_filter('script_loader_tag', 'add_module_type_to_scripts', 10, 3);
 
-function add_module_type_to_scripts($tag, $handle, $src) {
+function add_module_type_to_scripts($tag, $handle, $src)
+{
   if ('devsx-dotlottie-player-js' === $handle) {
     $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
   }
   return $tag;
 }
 
-add_action( 'admin_enqueue_scripts', 'devsx_enqueue_block_editor_assets' );
+add_action('admin_enqueue_scripts', 'devsx_enqueue_block_editor_assets');
 
-function devsx_enqueue_block_editor_assets() {
+function devsx_enqueue_block_editor_assets()
+{
 
-	// CSS (бажано не підключати глобально в адмінці, але якщо треба — ось як)
-	wp_enqueue_style( 'devsx-editor-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css' );
-	wp_enqueue_style( 'devsx-editor-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css' );
-	wp_enqueue_style( 'devsx-editor-admin', get_template_directory_uri() . '/css/admin.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-editor-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-editor-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-editor-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION );
-	wp_enqueue_style( 'devsx-editor-media', get_template_directory_uri() . '/css/media.css', array(), _S_VERSION );
+  // CSS (бажано не підключати глобально в адмінці, але якщо треба — ось як)
+  wp_enqueue_style('devsx-editor-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
+  wp_enqueue_style('devsx-editor-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+  wp_enqueue_style('devsx-editor-admin', get_template_directory_uri() . '/css/admin.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-editor-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-editor-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-editor-main', get_template_directory_uri() . '/css/main.css', array(), _S_VERSION);
+  wp_enqueue_style('devsx-editor-media', get_template_directory_uri() . '/css/media.css', array(), _S_VERSION);
 
-	// JS
-	wp_enqueue_script( 'devsx-editor-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true );
-	wp_enqueue_script( 'devsx-editor-anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true );
-	//wp_enqueue_script( 'devsx-editor-dotlottie-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array('jquery'), null, true );
-	//wp_enqueue_script( 'devsx-editor-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
-	wp_enqueue_script( 'devsx-editor-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true );
+  // JS
+  wp_enqueue_script('devsx-editor-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
+  wp_enqueue_script('devsx-editor-anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
+  //wp_enqueue_script( 'devsx-editor-dotlottie-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array('jquery'), null, true );
+  //wp_enqueue_script( 'devsx-editor-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
+  wp_enqueue_script('devsx-editor-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true);
 }
 
 
@@ -227,9 +237,8 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/acf-blocks.php';
 
-
-
-function devsx_breadcrumbs() {
+function devsx_breadcrumbs()
+{
   if (!is_front_page()) {
 
     echo '<nav class="breadcrumbs" aria-label="Breadcrumb">';
@@ -268,12 +277,8 @@ function devsx_breadcrumbs() {
 
         echo '<span class="separator"> / </span>';
 
-        $category = get_the_category();
-        if ($category) {
-          $cat_link = get_category_link($category[0]->term_id);
-          echo '<a href="' . esc_url($cat_link) . '">' . esc_html($category[0]->name) . '</a>';
-          echo '<span class="separator"> / </span>';
-        }
+        // Удалена секция категорий, которую вы хотели убрать
+
       } elseif (get_post_type() === 'cases') {
         echo '<a href="' . get_post_type_archive_link('cases') . '">' . apply_filters('cases_archive_title', 'Cases') . '</a>';
         echo '<span class="separator"> / </span>';
@@ -284,10 +289,32 @@ function devsx_breadcrumbs() {
           echo '<a href="' . get_term_link($term) . '">' . esc_html($term->name) . '</a>';
           echo '<span class="separator"> / </span>';
         }
+      } elseif (get_post_type() === 'career') {
+        // Специальная обработка для career, проверяем существование статической страницы
+        $career_page = get_page_by_path('career');
+        if ($career_page) {
+          echo '<a href="' . get_permalink($career_page->ID) . '">Career</a>';
+        } else {
+          // Если страницы нет, можно создать ссылку на корень сайта + /career/
+          echo '<a href="' . home_url('/career/') . '">Career</a>';
+        }
+        echo '<span class="separator"> / </span>';
       } else {
         $post_type_obj = get_post_type_object(get_post_type());
         if ($post_type_obj) {
-          echo '<a href="' . get_post_type_archive_link(get_post_type()) . '">' . esc_html($post_type_obj->labels->name) . '</a>';
+          if ($post_type_obj->has_archive) {
+            // Если есть архив, используем ссылку на архив
+            echo '<a href="' . get_post_type_archive_link(get_post_type()) . '">' . esc_html($post_type_obj->labels->name) . '</a>';
+          } else {
+            // Для типов без архива пытаемся найти статическую страницу с тем же slug
+            $page = get_page_by_path($post_type_obj->name);
+            if ($page) {
+              echo '<a href="' . get_permalink($page->ID) . '">' . esc_html($post_type_obj->labels->name) . '</a>';
+            } else {
+              // Если страница не найдена, создаем ссылку на корень + slug
+              echo '<a href="' . home_url('/' . $post_type_obj->name . '/') . '">' . esc_html($post_type_obj->labels->name) . '</a>';
+            }
+          }
           echo '<span class="separator"> / </span>';
         }
       }
@@ -371,8 +398,8 @@ function devsx_breadcrumbs() {
   }
 }
 
-add_filter( 'rest_url', function( $url ) {
-  return str_replace( 'http://', 'https://', $url );
+add_filter('rest_url', function ($url) {
+  return str_replace('http://', 'https://', $url);
 });
 
 //Registering a new Post Type "Cases"
@@ -464,76 +491,76 @@ function register_career_post_type()
 {
   register_taxonomy('career_location', 'career', array(
     'labels' => array(
-      'name'              => 'Locations',
-      'singular_name'     => 'Location',
-      'search_items'      => 'Search locations',
-      'all_items'         => 'All locations',
-      'parent_item'       => 'Parent location',
+      'name' => 'Locations',
+      'singular_name' => 'Location',
+      'search_items' => 'Search locations',
+      'all_items' => 'All locations',
+      'parent_item' => 'Parent location',
       'parent_item_colon' => 'Parent location:',
-      'edit_item'         => 'Edit location',
-      'update_item'       => 'Update location',
-      'add_new_item'      => 'Add new location',
-      'new_item_name'     => 'New location name',
-      'menu_name'         => 'Locations',
+      'edit_item' => 'Edit location',
+      'update_item' => 'Update location',
+      'add_new_item' => 'Add new location',
+      'new_item_name' => 'New location name',
+      'menu_name' => 'Locations',
     ),
-    'hierarchical'      => true,
-    'show_ui'           => true,
+    'hierarchical' => true,
+    'show_ui' => true,
     'show_admin_column' => true,
-    'query_var'         => true,
-    'rewrite'           => array('slug' => 'career-location'),
-    'show_in_rest'      => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'career-location'),
+    'show_in_rest' => true,
   ));
 
   register_taxonomy('career_level', 'career', array(
     'labels' => array(
-      'name'              => 'Levels',
-      'singular_name'     => 'Level',
-      'search_items'      => 'Search levels',
-      'all_items'         => 'All levels',
-      'parent_item'       => 'Parental level',
+      'name' => 'Levels',
+      'singular_name' => 'Level',
+      'search_items' => 'Search levels',
+      'all_items' => 'All levels',
+      'parent_item' => 'Parental level',
       'parent_item_colon' => 'Parental level:',
-      'edit_item'         => 'Edit level',
-      'update_item'       => 'Refresh level',
-      'add_new_item'      => 'Add new level',
-      'new_item_name'     => 'New level name',
-      'menu_name'         => 'Levels',
+      'edit_item' => 'Edit level',
+      'update_item' => 'Refresh level',
+      'add_new_item' => 'Add new level',
+      'new_item_name' => 'New level name',
+      'menu_name' => 'Levels',
     ),
-    'hierarchical'      => true,
-    'show_ui'           => true,
+    'hierarchical' => true,
+    'show_ui' => true,
     'show_admin_column' => true,
-    'query_var'         => true,
-    'rewrite'           => array('slug' => 'career-level'),
-    'show_in_rest'      => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'career-level'),
+    'show_in_rest' => true,
   ));
 
   register_post_type('career', array(
     'labels' => array(
-      'name'               => 'Career',
-      'singular_name'      => 'Vacancy',
-      'menu_name'          => 'DevsX Career',
-      'add_new'            => 'Add a vacancy',
-      'add_new_item'       => 'Add a new vacancy',
-      'edit_item'          => 'Edit vacancy',
-      'new_item'           => 'New vacancy',
-      'view_item'          => 'View vacancy',
-      'search_items'       => 'Search vacancies',
-      'not_found'          => 'No vacancies found',
+      'name' => 'Career',
+      'singular_name' => 'Vacancy',
+      'menu_name' => 'DevsX Career',
+      'add_new' => 'Add a vacancy',
+      'add_new_item' => 'Add a new vacancy',
+      'edit_item' => 'Edit vacancy',
+      'new_item' => 'New vacancy',
+      'view_item' => 'View vacancy',
+      'search_items' => 'Search vacancies',
+      'not_found' => 'No vacancies found',
       'not_found_in_trash' => 'No vacancies found in the basket',
     ),
-    'public'              => true,
-    'has_archive'         => false,
-    'publicly_queryable'  => true,
-    'show_ui'             => true,
-    'show_in_menu'        => true,
-    'show_in_nav_menus'   => true,
-    'show_in_admin_bar'   => true,
-    'menu_position'       => 30,
-    'menu_icon'           => 'dashicons-id-alt',
-    'capability_type'     => 'post',
-    'hierarchical'        => false,
-    'supports'            => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
-    'rewrite'             => array('slug' => 'career'),
-    'show_in_rest'        => true,
+    'public' => true,
+    'has_archive' => false,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'show_in_nav_menus' => true,
+    'show_in_admin_bar' => true,
+    'menu_position' => 30,
+    'menu_icon' => 'dashicons-id-alt',
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
+    'rewrite' => array('slug' => 'career'),
+    'show_in_rest' => true,
     'taxonomies' => array('career_location', 'career_level'),
   ));
 }
@@ -541,38 +568,39 @@ function register_career_post_type()
 
 if (function_exists('acf_add_options_page')) {
   acf_add_options_sub_page(array(
-    'page_title'         => __('Cases Settings', 'devsx-theme'),
-    'menu_title'         => __('Cases Settings', 'devsx-theme'),
-    'menu_slug'          => 'cases-settings',
-    'capability'         => 'edit_posts',
-    'parent_slug'        => 'edit.php?post_type=cases',
-    'position'           => false,
-    'icon_slug'          => false
+    'page_title' => __('Cases Settings', 'devsx-theme'),
+    'menu_title' => __('Cases Settings', 'devsx-theme'),
+    'menu_slug' => 'cases-settings',
+    'capability' => 'edit_posts',
+    'parent_slug' => 'edit.php?post_type=cases',
+    'position' => false,
+    'icon_slug' => false
   ));
   acf_add_options_sub_page(array(
-    'page_title'         => __('Blog Settings', 'devsx-theme'),
-    'menu_title'         => __('Blog Settings', 'devsx-theme'),
-    'menu_slug'          => 'blog-settings',
-    'capability'         => 'edit_posts',
-    'parent_slug'        => 'edit.php',
-    'position'           => false,
-    'icon_slug'          => false
+    'page_title' => __('Blog Settings', 'devsx-theme'),
+    'menu_title' => __('Blog Settings', 'devsx-theme'),
+    'menu_slug' => 'blog-settings',
+    'capability' => 'edit_posts',
+    'parent_slug' => 'edit.php',
+    'position' => false,
+    'icon_slug' => false
   ));
   acf_add_options_sub_page(array(
-    'page_title'         => __('Career Settings', 'devsx-theme'),
-    'menu_title'         => __('Career Settings', 'devsx-theme'),
-    'menu_slug'          => 'career-settings',
-    'capability'         => 'edit_posts',
-    'parent_slug'        => 'edit.php?post_type=career',
-    'position'           => false,
-    'icon_slug'          => false
+    'page_title' => __('Career Settings', 'devsx-theme'),
+    'menu_title' => __('Career Settings', 'devsx-theme'),
+    'menu_slug' => 'career-settings',
+    'capability' => 'edit_posts',
+    'parent_slug' => 'edit.php?post_type=career',
+    'position' => false,
+    'icon_slug' => false
   ));
 }
 
 /**
  * Register scripts and styles for Ajax request of blog page
  */
-function devsx_blog_scripts() {
+function devsx_blog_scripts()
+{
   wp_register_script(
     'blog-load-more',
     get_template_directory_uri() . '/js/blog-load-more.js',
@@ -585,36 +613,42 @@ function devsx_blog_scripts() {
     wp_enqueue_script('blog-load-more');
   }
 }
+
 add_action('wp_enqueue_scripts', 'devsx_blog_scripts');
 
 /**
  * Changing the URL structure for blog posts
  */
-function devsx_custom_post_permalink($permalink, $post) {
+function devsx_custom_post_permalink($permalink, $post)
+{
   if ($post->post_type === 'post') {
     return home_url('/blog/' . basename($permalink));
   }
   return $permalink;
 }
+
 add_filter('post_link', 'devsx_custom_post_permalink', 10, 2);
 add_filter('post_type_link', 'devsx_custom_post_permalink', 10, 2);
 
 /**
  * Add a rewrite rule for the new URL structure
  */
-function devsx_add_rewrite_rules() {
+function devsx_add_rewrite_rules()
+{
   add_rewrite_rule(
     '^blog/([^/]+)/?$',
     'index.php?name=$matches[1]',
     'top'
   );
 }
+
 add_action('init', 'devsx_add_rewrite_rules');
 
 /**
  * AJAX handler for loading additional posts
  */
-function devsx_load_more_posts() {
+function devsx_load_more_posts()
+{
   if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'blog_load_more_nonce')) {
     wp_send_json_error('Security Error');
     die();
@@ -713,7 +747,8 @@ add_action('wp_ajax_nopriv_devsx_load_more_posts', 'devsx_load_more_posts');
  * ====================================================================================================================
  * Register scripts and styles for Ajax request of cases page
  */
-function devsx_cases_scripts() {
+function devsx_cases_scripts()
+{
   wp_register_script(
     'cases-load-more',
     get_template_directory_uri() . '/js/cases-load-more.js',
@@ -733,12 +768,14 @@ function devsx_cases_scripts() {
     wp_enqueue_script('cases-load-more');
   }
 }
+
 add_action('wp_enqueue_scripts', 'devsx_cases_scripts');
 
 /**
  * AJAX handler for loading additional cases
  */
-function load_more_cases() {
+function load_more_cases()
+{
   // Check security nonce
   if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'cases_load_more_nonce')) {
     wp_send_json_error('Security check failed');
@@ -802,7 +839,7 @@ function load_more_cases() {
 
           if ($terms && !is_wp_error($terms)): ?>
             <div class="section-cases-item-tags">
-              <?php foreach($terms as $term): ?>
+              <?php foreach ($terms as $term): ?>
                 <span class="section-cases-item-tag"><?= $term->name; ?></span>
               <?php endforeach; ?>
             </div>
@@ -831,7 +868,8 @@ add_action('wp_ajax_nopriv_load_more_cases', 'load_more_cases');
 /**
  * Helper function to get taxonomy terms in the order they were assigned to the post
  */
-function get_terms_in_order($post_id, $taxonomy) {
+function get_terms_in_order($post_id, $taxonomy)
+{
   $terms = get_the_terms($post_id, $taxonomy);
 
   if (!$terms || is_wp_error($terms)) {
@@ -839,4 +877,101 @@ function get_terms_in_order($post_id, $taxonomy) {
   }
 
   return $terms;
+}
+
+/**
+ * adding additional information about the user
+ */
+
+add_action('show_user_profile', 'extra_user_profile_fields');
+add_action('edit_user_profile', 'extra_user_profile_fields');
+
+function extra_user_profile_fields($user)
+{ ?>
+  <h3>Additional information</h3>
+  <table class="form-table">
+    <tr>
+      <th><label for="position">Job title</label></th>
+      <td>
+        <input type="text" name="position" id="position"
+               value="<?php echo esc_attr(get_the_author_meta('position', $user->ID)); ?>"
+               class="regular-text"/>
+      </td>
+    </tr>
+  </table>
+<?php }
+
+add_action('personal_options_update', 'save_extra_user_profile_fields');
+add_action('edit_user_profile_update', 'save_extra_user_profile_fields');
+
+function save_extra_user_profile_fields($user_id)
+{
+  if (!current_user_can('edit_user', $user_id)) return false;
+  update_user_meta($user_id, 'position', sanitize_text_field($_POST['position']));
+}
+
+/**
+ * Register Hashtags taxonomy for blog posts
+ */
+function devsx_register_hashtags_taxonomy()
+{
+  register_taxonomy('hashtags', 'post', array(
+    'labels' => array(
+      'name' => 'Hashtags',
+      'singular_name' => 'Hashtag',
+      'search_items' => 'Search Hashtags',
+      'all_items' => 'All Hashtags',
+      'parent_item' => null,
+      'parent_item_colon' => null,
+      'edit_item' => 'Edit Hashtag',
+      'update_item' => 'Update Hashtag',
+      'add_new_item' => 'Add New Hashtag',
+      'new_item_name' => 'New Hashtag Name',
+      'menu_name' => 'Hashtags',
+      'not_found' => 'No hashtags found',
+      'back_to_items' => '← Back to Hashtags',
+    ),
+    'hierarchical' => false,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'hashtag'),
+    'show_in_rest' => true,
+  ));
+}
+
+add_action('init', 'devsx_register_hashtags_taxonomy');
+
+/**
+ * Add hashtags to the breadcrumbs if viewing a hashtag archive
+ * Note: Since hashtags are not used as links, this might not be needed,
+ * but keeping it in case the archives are still accessible
+ */
+function devsx_modify_breadcrumbs_for_hashtags($breadcrumbs)
+{
+  if (is_tax('hashtags')) {
+    $term = get_queried_object();
+
+    echo '<a href="' . get_permalink(get_option('page_for_posts')) . '">Blog</a>';
+    echo '<span class="separator"> / </span>';
+    echo '<span class="current">#' . esc_html($term->name) . '</span>';
+  }
+}
+
+add_action('devsx_breadcrumbs', 'devsx_modify_breadcrumbs_for_hashtags');
+
+/**
+ * Display hashtags on blog post (non-clickable)
+ */
+function devsx_display_hashtags()
+{
+  $hashtags = get_the_terms(get_the_ID(), 'hashtags');
+
+  if ($hashtags && !is_wp_error($hashtags)) {
+    echo '<div class="post-hashtags">';
+    foreach ($hashtags as $hashtag) {
+      echo '<span class="hashtag">#' . esc_html($hashtag->name) . '</span> ';
+    }
+    echo '</div>';
+  }
 }
