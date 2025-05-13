@@ -2366,7 +2366,8 @@ a:has(button) {
   background-color: #4E5157;
 }
 
-.blog-posts-section-wrapper {
+.blog-posts-section-wrapper,
+.tag-page-content {
   padding-top: 64px;
   padding-bottom: 64px;
 }
@@ -2383,7 +2384,8 @@ a:has(button) {
   text-transform: capitalize;
 }
 
-.blog-posts {
+.blog-posts,
+.tag-page-content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;

@@ -986,7 +986,8 @@
     top: 40%;
   }
 
-  .blog-posts {
+  .blog-posts,
+  .tag-page-content {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1073,7 +1074,8 @@
     padding-right: clamp(70px, -71.3043px + 35.3261vw, 200px);
   }
 
-  .blog-posts {
+  .blog-posts,
+  .tag-page-content {
     grid-template-columns: 1fr;
   }
 
