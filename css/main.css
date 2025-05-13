@@ -2661,11 +2661,82 @@ a:has(button) {
 }
 
 .post-template-single-blog ol {
+  padding-left: 24px;
   margin: 0 0 24px 24px;
 }
 
-.post-template-single-blog ul {
+.post-template-single-blog ol li::marker {
+  font-family: Satoshi-Bold;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 28px; /* 140% */
+  color: var(--e-global-color-brand);
+  text-align: center;
+}
+
+.post-template-single-blog ol li strong {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-family: Satoshi-Bold;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 28px; /* 140% */
+  color: var(--e-global-color-text);
+}
+
+.post-template-single-blog ol li {
+  margin-bottom: 16px;
+  font-family: Satoshi-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 144.444% */
+  color: rgb(240 243 250 / 80%);
+}
+
+.post-template-single-blog ul.wp-block-list {
+  padding-left: 24px;
   margin: 0 0 24px 24px;
+  list-style: none;
+}
+
+.post-template-single-blog ul.wp-block-list li {
+  position: relative;
+  padding: 12px 0 24px 12px;
+}
+
+.post-template-single-blog ul.wp-block-list li::before {
+  position: absolute;
+  top: 20px;
+  left: -24px;
+  width: 16px;
+  aspect-ratio: 1;
+  content: '';
+  background-color: var(--e-global-color-brand);
+  border-radius: 50%;
+}
+
+.post-template-single-blog .wp-block-quote {
+  position: relative;
+  padding: 24px 32px 24px 80px;
+  margin: 0;
+}
+
+.post-template-single-blog .wp-block-quote::before {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  width: 32px;
+  aspect-ratio: 1;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'%3E%3Cpath d='M8.66686 14.3311C8.36953 14.3311 8.08419 14.3764 7.80019 14.4178C7.89219 14.1084 7.98686 13.7938 8.13886 13.5111C8.29086 13.1004 8.52819 12.7444 8.76419 12.3858C8.96153 11.9978 9.30953 11.7351 9.56553 11.4031C9.83353 11.0804 10.1989 10.8658 10.4882 10.5978C10.7722 10.3178 11.1442 10.1778 11.4402 9.98043C11.7495 9.80309 12.0189 9.60709 12.3069 9.51376L13.0255 9.21776L13.6575 8.95509L13.0109 6.37109L12.2149 6.56309C11.9602 6.62709 11.6495 6.70176 11.2962 6.79109C10.9349 6.85776 10.5495 7.04043 10.1202 7.20709C9.69619 7.39643 9.20553 7.52443 8.74953 7.82843C8.29086 8.11909 7.76153 8.36176 7.29486 8.75109C6.84286 9.15243 6.29753 9.50043 5.89486 10.0111C5.45486 10.4884 5.02019 10.9898 4.68286 11.5604C4.29219 12.1044 4.02686 12.7018 3.74686 13.2924C3.49353 13.8831 3.28953 14.4871 3.12286 15.0738C2.80686 16.2498 2.66553 17.3671 2.61086 18.3231C2.56553 19.2804 2.59219 20.0764 2.64819 20.6524C2.66819 20.9244 2.70553 21.1884 2.73219 21.3711L2.76553 21.5951L2.80019 21.5871C3.03734 22.6949 3.58327 23.7129 4.37481 24.5233C5.16636 25.3338 6.17118 25.9036 7.27305 26.1669C8.37491 26.4301 9.52879 26.376 10.6012 26.0109C11.6736 25.6457 12.6207 24.9844 13.333 24.1035C14.0453 23.2225 14.4936 22.1579 14.6261 21.0328C14.7586 19.9077 14.5698 18.7681 14.0817 17.7458C13.5936 16.7235 12.826 15.8602 11.8677 15.256C10.9095 14.6517 9.79973 14.331 8.66686 14.3311ZM23.3335 14.3311C23.0362 14.3311 22.7509 14.3764 22.4669 14.4178C22.5589 14.1084 22.6535 13.7938 22.8055 13.5111C22.9575 13.1004 23.1949 12.7444 23.4309 12.3858C23.6282 11.9978 23.9762 11.7351 24.2322 11.4031C24.5002 11.0804 24.8655 10.8658 25.1549 10.5978C25.4389 10.3178 25.8109 10.1778 26.1069 9.98043C26.4162 9.80309 26.6855 9.60709 26.9735 9.51376L27.6922 9.21776L28.3242 8.95509L27.6775 6.37109L26.8815 6.56309C26.6269 6.62709 26.3162 6.70176 25.9629 6.79109C25.6015 6.85776 25.2162 7.04043 24.7869 7.20709C24.3642 7.39776 23.8722 7.52443 23.4162 7.82976C22.9575 8.12043 22.4282 8.36309 21.9615 8.75243C21.5095 9.15376 20.9642 9.50176 20.5615 10.0111C20.1215 10.4884 19.6869 10.9898 19.3495 11.5604C18.9589 12.1044 18.6935 12.7018 18.4135 13.2924C18.1602 13.8831 17.9562 14.4871 17.7895 15.0738C17.4735 16.2498 17.3322 17.3671 17.2775 18.3231C17.2322 19.2804 17.2589 20.0764 17.3149 20.6524C17.3349 20.9244 17.3722 21.1884 17.3989 21.3711L17.4322 21.5951L17.4669 21.5871C17.704 22.6949 18.2499 23.7129 19.0415 24.5233C19.833 25.3338 20.8378 25.9036 21.9397 26.1669C23.0416 26.4301 24.1955 26.376 25.2679 26.0109C26.3403 25.6457 27.2874 24.9844 27.9997 24.1035C28.7119 23.2225 29.1603 22.1579 29.2928 21.0328C29.4252 19.9077 29.2365 18.7681 28.7484 17.7458C28.2602 16.7235 27.4926 15.8602 26.5344 15.256C25.5761 14.6517 24.4664 14.331 23.3335 14.3311Z' fill='%23064AFD'/%3E%3C/svg%3E");
+}
+
+.post-template-single-blog .wp-block-quote p {
+  margin: 0;
 }
 
 /* Table of Contents */
@@ -2676,6 +2747,10 @@ a:has(button) {
 
   /* max-width: 1200px; */
   margin: 0 auto 32px;
+}
+
+.content-wrapper .container .main-content {
+  overflow: hidden;
 }
 
 .toc-sidebar {
@@ -2750,6 +2825,10 @@ a:has(button) {
   border-radius: 72px;
 }
 
+/* =========================================================== */
+
+
+/* =========================================================== */
 
 /* Related Posts */
 .related-posts .section-title {
@@ -2901,7 +2980,7 @@ a:has(button) {
 
 .toc-item::after {
   position: absolute;
-  top: 110%;
+  top: calc(100% + 8px);
   left: -2px;
   z-index: -1;
   width: 4px;
@@ -2930,7 +3009,7 @@ a:has(button) {
   width: 100%;
   height: 0;
   content: '';
-  background: #2196F3;
+  background: var(--e-global-color-brand);
   transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -2938,22 +3017,21 @@ a:has(button) {
 .toc-item.active::before {
   z-index: 10;
   background: var(--e-global-color-bg);
-  border-color: #2196F3;
-  box-shadow: 0 0 12px rgb(33 150 243 / 40%);
+  border-color: var(--e-global-color-brand);
 }
 
 .toc-item.active a {
-  color: #2196F3 !important;
+  color: var(--e-global-color-brand) !important;
 }
 
 /* Пройденные пункты */
 .toc-item.passed::before {
-  background: #2196F3;
-  border-color: #2196F3;
+  background: var(--e-global-color-brand);
+  border-color: var(--e-global-color-brand);
 }
 
 .toc-item.passed::after {
-  background: #2196F3;
+  background: var(--e-global-color-brand);
 }
 
 .toc-item.passed a {
@@ -2980,6 +3058,112 @@ a:has(button) {
   .toc-sidebar {
     display: none;
   }
+}
+
+/* Стили для блока шеринга статьи */
+
+.post-share-block {
+  position: relative;
+  padding: clamp(32px, 17.9184px + 3.0612vw, 62px) clamp(12px, 5.898px + 1.3265vw, 25px);
+  margin-top: 80px;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 12px;
+}
+
+.post-share-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.post-share-title {
+  font-family: Satoshi-Bold;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 130%; /* 36.4px */
+  color: var(--e-global-color-text);
+  text-align: center;
+}
+
+.post-share-subtitle {
+  margin-bottom: clamp(24px, 21.1837px + 0.6122vw, 30px);
+  font-family: Satoshi-Medium;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' off;
+  line-height: 1.55; /* 155.556% */
+  color: rgb(240 243 250 / 80%);
+}
+
+.post-share-networks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.share-button:hover {
+  box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+  transform: translateY(-3px);
+}
+
+.share-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.share-icon-placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+}
+
+/* Уведомление о копировании */
+.share-notification {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  z-index: 100;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: rgb(0 0 0 / 80%);
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+  transition: opacity 0.3s ease;
+  transform: translateX(-50%);
+}
+
+/* Для скринридеров */
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 

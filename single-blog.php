@@ -76,6 +76,7 @@ if (have_posts()) : while (have_posts()) : the_post();
       <main class="main-content">
         <?php devsx_display_hashtags(); ?>
         <?php the_content(); ?>
+        <?php get_template_part('acf-blocks/single-post-share/template'); ?>
       </main>
     </div>
   </div>

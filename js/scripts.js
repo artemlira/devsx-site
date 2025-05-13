@@ -412,138 +412,233 @@
 }(jQuery));
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Выбираем все заголовки с h2 по h6
-  const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
-  const tocItems = document.querySelectorAll('.toc-item');
-  const progressFill = document.querySelector('.progress-bar::after');
-  let animating = false;
+  function extractHeadings() {
+    const contentContainer = document.querySelector('.main-content');
+    if (!contentContainer) return [];
 
-  // Функция сортировки заголовков по их позиции в документе
-  const sortedHeadings = Array.from(headings).sort((a, b) => {
-    return a.offsetTop - b.offsetTop;
-  });
-
-  function updateProgress() {
-    if (animating) return;
-    animating = true;
-
-    const scrollPosition = window.scrollY + window.innerHeight / 2;
-    let currentIndex = 0;
-    let passedHeight = 0;
-
-    // Итерируем через отсортированные заголовки
-    sortedHeadings.forEach((heading, index) => {
-      const rect = heading.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2) {
-        currentIndex = index;
-        passedHeight = rect.bottom + window.scrollY;
-      }
-    });
-
-    // Обновление классов
-    tocItems.forEach((item, index) => {
-      item.classList.remove('active', 'passed');
-      if (index < currentIndex) item.classList.add('passed');
-      if (index === currentIndex) item.classList.add('active');
-    });
-
-    // Расчет прогресса
-    const start = sortedHeadings[0]?.offsetTop || 0;
-    const end = sortedHeadings[sortedHeadings.length - 1]?.offsetTop || document.documentElement.scrollHeight;
-    const totalHeight = end - start;
-    const currentProgress = totalHeight > 0
-      ? ((passedHeight - start) / totalHeight) * 100
-      : 0;
-
-    // Плавное обновление прогресс-бара
-    gsap.to(progressFill, {
-      height: `${Math.min(currentProgress, 100)}%`,
-      duration: 0.8,
-      ease: "power2.out",
-      onComplete: () => animating = false
-    });
-
-    requestAnimationFrame(updateProgress);
+    const headings = contentContainer.querySelectorAll('h2, h3, h4, h5, h6');
+    return Array.from(headings).filter(heading => heading.textContent.trim() !== '');
   }
 
-  // Плавный скролл для якорей
-  document.querySelectorAll('.toc-item a').forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+  function generateTableOfContents(headings) {
+    const tocList = document.querySelector('.toc-list');
+    if (!tocList) return;
+
+    tocList.innerHTML = '';
+
+    headings.forEach((heading, index) => {
+      const headingText = heading.textContent.trim();
+      const anchor = `heading-${index}-${headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+      heading.id = anchor;
+
+      const tocItem = document.createElement('li');
+      tocItem.classList.add('toc-item', `toc-level-${heading.tagName.toLowerCase()}`);
+      tocItem.dataset.headingIndex = index; // Добавляем индекс для отслеживания
+
+      const tocLink = document.createElement('a');
+      tocLink.href = `#${anchor}`;
+      tocLink.textContent = headingText;
+
+      // Добавляем обработчик плавной прокрутки прямо здесь
+      tocLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById(anchor);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+
+      tocItem.appendChild(tocLink);
+      tocList.appendChild(tocItem);
+    });
+  }
+
+  function updateTocHighlight() {
+    const headings = extractHeadings();
+    const tocItems = document.querySelectorAll('.toc-item');
+    const progressBar = document.querySelector('.progress-bar');
+
+    if (!headings.length || !tocItems.length) return;
+
+    // Сортируем заголовки по их позиции в документе
+    const sortedHeadings = Array.from(headings).sort((a, b) => a.offsetTop - b.offsetTop);
+
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
+    let currentIndex = -1;
+
+    // Находим последний заголовок, который уже "пройден"
+    for (let i = 0; i < sortedHeadings.length; i++) {
+      if (sortedHeadings[i].offsetTop <= scrollPosition) {
+        currentIndex = i;
+      } else {
+        break; // Оптимизация: выходим из цикла как только найден первый непройденный заголовок
+      }
+    }
+
+    // Обновляем классы для элементов оглавления
+    tocItems.forEach((item, index) => {
+      item.classList.remove('active', 'passed');
+
+      if (index < currentIndex) {
+        item.classList.add('passed');
+      } else if (index === currentIndex) {
+        item.classList.add('active');
       }
     });
+
+    // Расчет прогресса чтения
+    if (sortedHeadings.length > 0) {
+      const firstHeading = sortedHeadings[0];
+      const lastHeading = sortedHeadings[sortedHeadings.length - 1];
+      const totalHeight = lastHeading.offsetTop + lastHeading.offsetHeight - firstHeading.offsetTop;
+
+      const progress = totalHeight > 0
+        ? Math.min(((scrollPosition - firstHeading.offsetTop) / totalHeight) * 100, 100)
+        : 0;
+
+      if (progressBar) {
+        progressBar.style.height = `${progress}%`;
+      }
+    }
+  }
+
+  function initializeTableOfContents() {
+    const headings = extractHeadings();
+
+    // Сначала генерируем оглавление
+    generateTableOfContents(headings);
+
+    // Затем устанавливаем отслеживание прокрутки
+    window.addEventListener('scroll', updateTocHighlight);
+    window.addEventListener('resize', updateTocHighlight);
+
+    // Первоначальное вычисление активного заголовка
+    updateTocHighlight();
+  }
+
+// Запускаем инициализацию оглавления
+  initializeTableOfContents();
+
+// Наблюдатель за изменениями DOM для динамического контента
+  const observer = new MutationObserver(function (mutations) {
+    let contentChanged = false;
+
+    mutations.forEach(function (mutation) {
+      if (mutation.type === 'childList') {
+        contentChanged = true;
+      }
+    });
+
+    if (contentChanged) {
+      // Повторно генерируем оглавление только при реальных изменениях контента
+      initializeTableOfContents();
+    }
   });
 
-  window.addEventListener('scroll', updateProgress);
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
-});
+// Настройка наблюдателя за основным контентом
+  const contentContainer = document.querySelector('.main-content');
+  if (contentContainer) {
+    observer.observe(contentContainer, {
+      childList: true,
+      subtree: true
+    });
+  }
+  // Выбираем все заголовки с h2 по h6
+  // const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+  // const tocItems = document.querySelectorAll('.toc-item');
+  // const progressFill = document.querySelector('.progress-bar::after');
+  // let animating = false;
+  //
+  // // Функция сортировки заголовков по их позиции в документе
+  // const sortedHeadings = Array.from(headings).sort((a, b) => {
+  //   return a.offsetTop - b.offsetTop;
+  // });
+  //
+  // function updateProgress() {
+  //   if (animating) return;
+  //   animating = true;
+  //
+  //   const scrollPosition = window.scrollY + window.innerHeight / 2;
+  //   let currentIndex = 0;
+  //   let passedHeight = 0;
+  //
+  //   // Итерируем через отсортированные заголовки
+  //   sortedHeadings.forEach((heading, index) => {
+  //     const rect = heading.getBoundingClientRect();
+  //     if (rect.top <= window.innerHeight / 2) {
+  //       currentIndex = index;
+  //       passedHeight = rect.bottom + window.scrollY;
+  //     }
+  //   });
+  //
+  //   // Обновление классов
+  //   tocItems.forEach((item, index) => {
+  //     item.classList.remove('active', 'passed');
+  //     if (index < currentIndex) item.classList.add('passed');
+  //     if (index === currentIndex) item.classList.add('active');
+  //   });
+  //
+  //   // Расчет прогресса
+  //   const start = sortedHeadings[0]?.offsetTop || 0;
+  //   const end = sortedHeadings[sortedHeadings.length - 1]?.offsetTop || document.documentElement.scrollHeight;
+  //   const totalHeight = end - start;
+  //   const currentProgress = totalHeight > 0
+  //     ? ((passedHeight - start) / totalHeight) * 100
+  //     : 0;
+  //
+  //   // Плавное обновление прогресс-бара
+  //   gsap.to(progressFill, {
+  //     height: `${Math.min(currentProgress, 100)}%`,
+  //     duration: 0.8,
+  //     ease: "power2.out",
+  //     onComplete: () => animating = false
+  //   });
+  //
+  //   requestAnimationFrame(updateProgress);
+  // }
+  //
+  // // Плавный скролл для якорей
+  // document.querySelectorAll('.toc-item a').forEach(link => {
+  //   link.addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     const target = document.querySelector(this.getAttribute('href'));
+  //     if (target) {
+  //       target.scrollIntoView({
+  //         behavior: 'smooth',
+  //         block: 'start'
+  //       });
+  //     }
+  //   });
+  // });
+  //
+  // window.addEventListener('scroll', updateProgress);
+  // window.addEventListener('resize', updateProgress);
+  // updateProgress();
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const headings = document.querySelectorAll('h2, h3');
-//   const tocItems = document.querySelectorAll('.toc-item');
-//   const progressFill = document.querySelector('.progress-bar::after');
-//   let animating = false;
-//
-//   function updateProgress() {
-//     if (animating) return;
-//     animating = true;
-//
-//     const scrollPosition = window.scrollY + window.innerHeight / 2;
-//     let currentIndex = 0;
-//     let passedHeight = 0;
-//
-//     headings.forEach((heading, index) => {
-//       const rect = heading.getBoundingClientRect();
-//       if (rect.top <= window.innerHeight / 2) {
-//         currentIndex = index;
-//         passedHeight = rect.bottom + window.scrollY;
-//       }
-//     });
-//
-//     // Обновление классов
-//     tocItems.forEach((item, index) => {
-//       item.classList.remove('active', 'passed');
-//       if (index < currentIndex) item.classList.add('passed');
-//       if (index === currentIndex) item.classList.add('active');
-//     });
-//
-//     // Расчет прогресса
-//     const start = headings[0]?.offsetTop || 0;
-//     const end = headings[headings.length - 1]?.offsetTop || document.documentElement.scrollHeight;
-//     const totalHeight = end - start;
-//     const currentProgress = ((passedHeight - start) / totalHeight) * 100;
-//
-//     // Плавное обновление прогресс-бара
-//     gsap.to(progressFill, {
-//       height: `${Math.min(currentProgress, 100)}%`,
-//       duration: 0.8,
-//       ease: "power2.out",
-//       onComplete: () => animating = false
-//     });
-//
-//     requestAnimationFrame(updateProgress);
-//   }
-//
-//   // Плавный скролл для якорей
-//   document.querySelectorAll('.toc-item a').forEach(link => {
-//     link.addEventListener('click', function (e) {
-//       e.preventDefault();
-//       const target = document.querySelector(this.getAttribute('href'));
-//       target.scrollIntoView({
-//         behavior: 'smooth',
-//         block: 'start'
-//       });
-//     });
-//   });
-//
-//   window.addEventListener('scroll', updateProgress);
-//   window.addEventListener('resize', updateProgress);
-//   updateProgress();
-// });
+  // Находим все слайдеры на странице
+  const sliders = document.querySelectorAll('.devsx-slider');
+
+  // Перебираем каждый слайдер и инициализируем
+  sliders.forEach(sliderElement => {
+    // Получаем уникальный ID из data-атрибута
+    const sliderId = sliderElement.dataset.sliderId;
+
+    // Инициализируем Swiper для конкретного слайдера
+    new Swiper(`#${sliderId}`, {
+      // Общие настройки для всех слайдеров
+      spaceBetween: 10,
+      slidesPerView: 1,
+      loop: true,
+
+      // Пагинация
+      pagination: {
+        el: `.devsx-slider-pagination-${sliderId}`,
+        clickable: true
+      },
+    });
+  });
+});

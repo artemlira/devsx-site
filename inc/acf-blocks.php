@@ -105,6 +105,20 @@ function devsx_register_acf_blocks()
       'keywords' => ['page', 'bottom', 'contacts']
     ],
     [
+      'slug' => 'single-post-ol',
+      'title' => __('DevsX - Numbered list for single post', 'devsx'),
+      'description' => __('List, text', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['numbered list', 'list', 'single post']
+    ],
+    [
+      'slug' => 'single-post-share',
+      'title' => __('DevsX - Single post Section for sharing', 'devsx'),
+      'description' => __('List, text', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['networks', 'share', 'single post']
+    ],
+    [
       'slug' => 'services-about',
       'title' => __('DevsX - Services About', 'devsx'),
       'description' => __('About us block', 'devsx'),
