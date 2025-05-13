@@ -21,6 +21,13 @@ function devsx_register_acf_blocks()
       'keywords' => ['hero', 'banner', 'heading', 'about']
     ],
     [
+      'slug' => 'home-hero',
+      'title' => __('DevsX - Home Hero Section', 'devsx'),
+      'description' => __('Heading and text with media', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['hero', 'banner', 'heading', 'home']
+    ],
+    [
       'slug' => 'career-hero',
       'title' => __('DevsX - Career Hero Section', 'devsx'),
       'description' => __('Heading and text', 'devsx'),
