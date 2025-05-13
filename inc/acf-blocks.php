@@ -84,6 +84,13 @@ function devsx_register_acf_blocks()
       'keywords' => ['about', 'team', 'slider']
     ],
     [
+      'slug' => 'home-services-slider',
+      'title' => __('DevsX - Home Services Slider Section', 'devsx'),
+      'description' => __('Heading and slider', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['home', 'services', 'slider']
+    ],
+    [
       'slug' => 'single-post-slider',
       'title' => __('DevsX - Single post Images Slider Section', 'devsx'),
       'description' => __('slider', 'devsx'),
