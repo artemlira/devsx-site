@@ -196,7 +196,7 @@ function devsx_enqueue_block_editor_assets()
   // CSS (бажано не підключати глобально в адмінці, але якщо треба — ось як)
   wp_enqueue_style('devsx-editor-slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
   wp_enqueue_style('devsx-editor-slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
-  wp_enqueue_style('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.css');
+  wp_enqueue_style('devsx-editor-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.css');
   wp_enqueue_style('devsx-editor-admin', get_template_directory_uri() . '/css/admin.css', array(), _S_VERSION);
   wp_enqueue_style('devsx-editor-animate', get_template_directory_uri() . '/css/animate.css', array(), _S_VERSION);
   wp_enqueue_style('devsx-editor-fonts', get_template_directory_uri() . '/css/fonts.css', array(), _S_VERSION);
@@ -205,11 +205,11 @@ function devsx_enqueue_block_editor_assets()
 
   // JS
   wp_enqueue_script('devsx-editor-slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
-  wp_enqueue_script('devsx-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.js', array(), null, true);
+  wp_enqueue_script('devsx-editor-swiper', 'https://cdn.jsdelivr.net/npm/swiper@7.4.0/swiper-bundle.min.js', array(), null, true);
   wp_enqueue_script('devsx-editor-anime-js', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array('jquery'), null, true);
   //wp_enqueue_script( 'devsx-editor-dotlottie-js', 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs', array('jquery'), null, true );
   //wp_enqueue_script( 'devsx-editor-wow-js', get_template_directory_uri() . '/js/wow.js', array('jquery'), _S_VERSION, true );
-  wp_enqueue_script('devsx-editor-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), _S_VERSION, true);
+  wp_enqueue_script('devsx-editor-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery', 'devsx-swiper'), _S_VERSION, true);
 }
 
 
@@ -911,4 +911,3 @@ function save_extra_user_profile_fields($user_id)
   if (!current_user_can('edit_user', $user_id)) return false;
   update_user_meta($user_id, 'position', sanitize_text_field($_POST['position']));
 }
-

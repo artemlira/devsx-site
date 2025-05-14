@@ -91,6 +91,13 @@ function devsx_register_acf_blocks()
       'keywords' => ['home', 'services', 'slider']
     ],
     [
+      'slug' => 'home-process-steps',
+      'title' => __('DevsX - Home Process Steps Section', 'devsx'),
+      'description' => __('Heading and cards', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['home', 'process', 'steps']
+    ],
+    [
       'slug' => 'single-post-slider',
       'title' => __('DevsX - Single post Images Slider Section', 'devsx'),
       'description' => __('slider', 'devsx'),

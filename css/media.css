@@ -22,14 +22,14 @@
     margin: 0 auto 32px;
   }
 
-  .home-process-steps .steps-grid a,
-  .home-process-steps .steps-grid .col,
-  .home-process-steps .steps-grid figure {
-    aspect-ratio: 1 / 1;
+  .home-process-steps .steps-grid-wrapper .item {
+    /* max-width: 584px; */
+
+    /* aspect-ratio: 73 / 55; */
   }
 
   .home-process-steps .steps-grid figure img {
-    height: 100% !important;
+    /* height: 100% !important; */
   }
 
   .home-blog .posts-grid .post-thumbnail {
@@ -52,6 +52,11 @@
     max-width: 1312px;
     padding: 0 16px;
     margin: 0 auto;
+  }
+
+  .home-process-steps .steps-grid-wrapper .item {
+    /* max-width: 424px; */
+    aspect-ratio: 17 / 16;
   }
 }
 
@@ -530,6 +535,16 @@
     color: rgb(240 243 250 / 75%);
     text-transform: uppercase;
     letter-spacing: 0.04rem;
+  }
+
+  .home-process-steps .steps-grid-wrapper {
+    flex-direction: column;
+  }
+
+  .home-process-steps .steps-grid-wrapper .item {
+    flex: 1 1 auto;
+    max-height: 440px;
+    aspect-ratio: 73 / 55;
   }
 
   .hero-cta button {
@@ -1098,6 +1113,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .home-process-steps .steps-grid-wrapper .item {
+    aspect-ratio: 17 / 16;
+  }
+
   .post-share-block {
     padding: 20px 15px;
   }
