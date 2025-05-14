@@ -1,0 +1,552 @@
+.cards-showcase-section {
+  position: relative;
+  height: 300vh; /* Высота для скролла - будет меняться через JavaScript */
+  overflow: hidden;
+  background-color: #0a0a0a; /* Темный фон как на изображении */
+}
+
+.cards-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.section-title {
+  padding-top: 60px;
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff; /* Белый цвет для текста на темном фоне */
+  text-align: center;
+}
+
+.cards-container {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  overflow: visible;
+}
+
+/* Стили карточки */
+.card-item {
+  position: absolute;
+  width: 100%;
+  padding: 0 24px;
+  visibility: hidden;
+  background: #0C101D;
+  border-radius: 12px;
+  opacity: 0;
+  transition: transform 0.3s ease;
+  transform: translateY(100vh);
+  will-change: transform, opacity; /* Оптимизация производительности */
+}
+
+.card-item-heading {
+  display: flex;
+  align-items: center;
+  padding: 15px 0 10px;
+}
+
+.card-item-title {
+  flex: 1 1 auto;
+  font-family: Satoshi-Medium;
+  font-size: clamp(28px, 26.1224px + 0.4082vw, 32px);
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' off;
+  line-height: 1.25; /* 125% */
+  color: #F0F3FA;
+}
+
+.card-item-text {
+  margin: 0;
+  font-family: Satoshi-Regular;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: 'liga' off;
+  line-height: 1.42; /* 142.857% */
+  color: rgb(240 243 250 / 32%);
+  text-align: right;
+}
+
+.card-item-text a {
+  color: var(--e-global-color-brand);
+  text-decoration: none;
+}
+
+.card-item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-left: clamp(20px, 10.6122px + 2.0408vw, 40px);
+  background: #01040A;
+  border-radius: 50%;
+}
+
+/* Стили для внутренней части карточки */
+.card-inner {
+  position: relative;
+  display: flex;
+  height: 100%;
+  padding: 20px 30px;
+  border-radius: 16px;
+}
+
+/* Если есть иконки для карточек */
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(45deg, #3f85f7, #67adff); /* Градиент как на скриншоте */
+  border-radius: 50%;
+}
+
+.card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.card-content h3 {
+  margin: 0 0 5px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff; /* Белый текст */
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.card-info-text {
+  font-size: 14px;
+  color: rgb(255 255 255 / 70%); /* Полупрозрачный белый */
+}
+
+.card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background-color: rgb(255 255 255 / 10%);
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.card-arrow:hover {
+  background-color: rgb(255 255 255 / 20%);
+}
+
+/* Цветовые акценты для карточек, как на скриншоте */
+.card-item.outsourcing .card-icon {
+  margin-right: 80px;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+}
+
+.card-item.outstaffing .card-icon:nth-child(1) {
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+}
+
+.card-item.outstaffing .card-icon:nth-child(2) {
+  background: linear-gradient(225deg, #6EF5DF 7.92%, #0B9D6F 100%);
+  background-blend-mode: overlay, normal;
+  transform: translateX(-12px);
+}
+
+.card-item.outstaffing .card-icon:nth-child(3) {
+  margin-right: 20px;
+  background: linear-gradient(180deg, #FFF 0%, #3EA0F8 100%);
+  background-blend-mode: overlay, normal;
+  transform: translateX(-24px);
+}
+
+.card-item[data-index="3"] .card-icon {
+  background: linear-gradient(45deg, #3f85f7, #6bceff, #ff9a67, #67adff);
+}
+
+.section-header {
+  margin-bottom: 80px;
+}
+
+.section-label {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3f85f7;
+  letter-spacing: 0.5px;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.title-flexible {
+  color: #fff;
+}
+
+.title-choices {
+  color: #444;
+}
+
+.title-for {
+  color: #fff;
+}
+
+/* Стили для иконок */
+.card-icon-wrapper {
+  margin-right: 20px;
+}
+
+.card-icon-group {
+  display: flex;
+  align-items: center;
+}
+
+.card-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.card-icon-blue {
+  background-color: #3f85f7;
+}
+
+.card-icon-light-blue {
+  margin-left: -10px;
+  background-color: #6bceff;
+}
+
+.card-icon-orange {
+  margin-left: -10px;
+  background-color: #ff9a67;
+}
+
+/* Стили для ссылки */
+.contact-link {
+  margin: 0 5px;
+  color: #3f85f7;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  .card-inner {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+
+  .card-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .card-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-arrow {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 28px;
+  }
+
+  .card-content h3 {
+    font-size: 20px;
+  }
+
+  .card-info-text {
+    font-size: 12px;
+  }
+}
+
+
+.outsourcing .parent,
+.outstaffing .parent {
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(20, 1fr);
+  gap: 8px;
+}
+
+.product-team .parent {
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(16, 1fr);
+  gap: 40px 8px;
+}
+
+.outsourcing .parent div,
+.outstaffing .parent div,
+.product-team .parent .div-wrap {
+  height: 84px;
+}
+
+.outsourcing .parent .title,
+.outstaffing .parent .title,
+.product-team .parent .title {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+  justify-content: start;
+  font-family: Satoshi-Medium;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.42; /* 142.857% */
+  color: #F0F3FA;
+}
+
+.outsourcing .parent .title span,
+.outstaffing .parent .title span,
+.product-team .parent .title span {
+  font-family: Satoshi-Medium;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.42; /* 142.857% */
+  color: rgb(240 243 250 / 32%);
+}
+
+.outsourcing .parent::after,
+.outstaffing .parent::after,
+.product-team .parent::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(6 * 100% / 7);
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(
+      to right,
+      transparent,
+      transparent calc(100% - var(--line-thickness)),
+      var(--line-color) calc(100% - var(--line-thickness))
+  );
+  background-size: calc(100% / 8) 100%;
+
+  --line-color: rgb(240 243 250 / 4%);;
+  --line-thickness: 1px;
+}
+
+.product-team .parent .div1-wrap {
+  grid-column: span 4 / span 4;
+}
+
+.product-team .parent .div1 {
+  height: 40px;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div1-title,
+.outstaffing .parent .div1-title {
+  grid-column: span 2 / span 2;
+}
+
+.outsourcing .parent .div1,
+.outstaffing .parent .div1 {
+  grid-row-start: 2;
+  grid-column: span 4 / span 4;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div2-title,
+.outstaffing .parent .div2-title {
+  grid-row-start: 2;
+  grid-column: span 2 / span 2;
+  grid-column-start: 5;
+}
+
+.product-team .parent .div2-wrap {
+  grid-row-start: 2;
+  grid-column: span 4 / span 4;
+  grid-column-start: 5;
+}
+
+.product-team .parent .div2 {
+  height: 40px;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div2,
+.outstaffing .parent .div2 {
+  grid-row-start: 3;
+  grid-column: span 4 / span 4;
+  grid-column-start: 5;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div3-title,
+.outstaffing .parent .div3-title {
+  grid-row-start: 3;
+  grid-column: span 2 / span 2;
+  grid-column-start: 9;
+}
+
+.product-team .parent .div3-wrap {
+  grid-row-start: 3;
+  grid-column: span 6 / span 6;
+  grid-column-start: 7;
+}
+
+.product-team .parent .div3 {
+  height: 40px;
+  background: linear-gradient(225deg, #6EF5DF 7.92%, #0B9D6F 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div3,
+.outstaffing .parent .div3 {
+  grid-row-start: 4;
+  grid-column: span 6 / span 6;
+  grid-column-start: 7;
+  background: linear-gradient(225deg, #6EF5DF 7.92%, #0B9D6F 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div4-title,
+.outstaffing .parent .div4-title {
+  grid-row-start: 4;
+  grid-column: span 2 / span 2;
+  grid-column-start: 13;
+}
+
+.product-team .parent .div4-wrap {
+  grid-row-start: 4;
+  grid-column: span 3 / span 3;
+  grid-column-start: 11;
+}
+
+.product-team .parent .div4 {
+  height: 40px;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div4,
+.outstaffing .parent .div4 {
+  grid-row-start: 5;
+  grid-column: span 3 / span 3;
+  grid-column-start: 11;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div5-title,
+.outstaffing .parent.div5-title {
+  grid-row-start: 5;
+  grid-column: span 2 / span 2;
+  grid-column-start: 14;
+}
+
+.product-team .parent .div5-wrap {
+  grid-row-start: 5;
+  grid-column: span 4 / span 4;
+  grid-column-start: 12;
+}
+
+.product-team .parent .div5 {
+  height: 40px;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .div5,
+.outstaffing .parent .div5 {
+  grid-row-start: 6;
+  grid-column: span 4 / span 4;
+  grid-column-start: 12;
+  background: linear-gradient(225deg, #43BAF5 7.92%, #242FFF 100%);
+  background-blend-mode: overlay, normal;
+  border-radius: 8px;
+}
+
+.outsourcing .parent .weeks,
+.outstaffing .parent .weeks {
+  display: flex;
+  grid-row-start: 7;
+  grid-column: span 16 / span 16;
+  align-items: center;
+  justify-content: space-around;
+  font-family: Satoshi-Medium;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.42; /* 142.857% */
+  color: rgb(240 243 250 / 32%);
+  text-align: center;
+  border-top: 1px solid rgb(240 243 250 / 4%);
+  border-bottom: 1px solid rgb(240 243 250 / 4%);
+}
+
+.product-team .parent .weeks {
+  display: flex;
+  grid-row-start: 6;
+  grid-column: span 16 / span 16;
+  align-items: center;
+  justify-content: space-around;
+  font-family: Satoshi-Medium;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.42; /* 142.857% */
+  color: rgb(240 243 250 / 32%);
+  text-align: center;
+  border-top: 1px solid rgb(240 243 250 / 4%);
+  border-bottom: 1px solid rgb(240 243 250 / 4%);
+}

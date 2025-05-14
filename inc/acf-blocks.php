@@ -98,6 +98,13 @@ function devsx_register_acf_blocks()
       'keywords' => ['home', 'process', 'steps']
     ],
     [
+      'slug' => 'home-flexible-choices',
+      'title' => __('DevsX - Home Flexible Choices Section', 'devsx'),
+      'description' => __('Heading and cards', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['home', 'flexible', 'choices']
+    ],
+    [
       'slug' => 'single-post-slider',
       'title' => __('DevsX - Single post Images Slider Section', 'devsx'),
       'description' => __('slider', 'devsx'),

@@ -9,77 +9,77 @@ get_header(); ?>
 <?php the_content(); ?>
 
 
-  <section class="swipe-heading">
-    <div class="container">
-      <div class="section-heading">
-        <div class="caption-text color-blue wow fadeInUp">
-          Services
-        </div>
-        <h2 class="wow fadeInUp" data-wow-delay="0.1s">
-          Flexible <span class="opacity-032">Choices</span><br>
-          For Any Project
-        </h2>
-      </div>
-    </div>
-  </section>
+  <!--  <section class="swipe-heading">-->
+  <!--    <div class="container">-->
+  <!--      <div class="section-heading">-->
+  <!--        <div class="caption-text color-blue wow fadeInUp">-->
+  <!--          Services-->
+  <!--        </div>-->
+  <!--        <h2 class="wow fadeInUp" data-wow-delay="0.1s">-->
+  <!--          Flexible <span class="opacity-032">Choices</span><br>-->
+  <!--          For Any Project-->
+  <!--        </h2>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </section>-->
 
-  <section class="swipe-container">
-    <nav class="sidebar-nav">
-      <a href="#" data-index="0" class="nav-link active">
-        <div class="item-heading ">
-          <span>01</span>
-          <img src="<?php echo get_template_directory_uri() ?>/images/png/services-swipper-01.png" alt="Outsourcing">
-        </div>
-        <h6>Outsourcing</h6>
-      </a>
-      <a href="#" data-index="1" class="nav-link">
-        <div class="item-heading ">
-          <span>02</span>
-          <img src="<?php echo get_template_directory_uri() ?>/images/png/services-swipper-02.png" alt="Outstaffing">
-        </div>
-        <h6>Outstaffing</h6>
-      </a>
-      <a href="#" data-index="2" class="nav-link">
-        <div class="item-heading ">
-          <span>03</span>
-          <img src="<?php echo get_template_directory_uri() ?>/images/png/services-swipper-03.png" alt="Product Team">
-        </div>
-        <h6>Product Team</h6>
-      </a>
-    </nav>
-    <div class="swipe-section">
-      <section class="panel">
-        <div class="inner">
-          <div class="panel-heading">
-            <h6>Outsourcing</h6>
-            <span class="link">From 1 to 8 weeks <a href="#">contact us</a> for details</span>
-          </div>
-          <img src="<?php echo get_template_directory_uri() ?>/images/content/services-swipper-content-01.png"
-               alt="Outsourcing">
-        </div>
-      </section>
-      <section class="panel">
-        <div class="inner">
-          <div class="panel-heading">
-            <h6>Outstaffing</h6>
-            <span class="link">From 1 to 8 weeks <a href="#">contact us</a> for details</span>
-          </div>
-          <img src="<?php echo get_template_directory_uri() ?>/images/content/services-swipper-content-01.png"
-               alt="Outstaffing">
-        </div>
-      </section>
-      <section class="panel">
-        <div class="inner">
-          <div class="panel-heading">
-            <h6>Product Team</h6>
-            <span class="link">From 1 to 8 weeks <a href="#">contact us</a> for details</span>
-          </div>
-          <img src="<?php echo get_template_directory_uri() ?>/images/content/services-swipper-content-01.png"
-               alt="Product Team">
-        </div>
-      </section>
-    </div>
-  </section>
+  <!--  <section class="swipe-container">-->
+  <!--    <nav class="sidebar-nav">-->
+  <!--      <a href="#" data-index="0" class="nav-link active">-->
+  <!--        <div class="item-heading ">-->
+  <!--          <span>01</span>-->
+  <!--          <img src="--><?php //echo get_template_directory_uri() ?><!--/images/png/services-swipper-01.png" alt="Outsourcing">-->
+  <!--        </div>-->
+  <!--        <h6>Outsourcing</h6>-->
+  <!--      </a>-->
+  <!--      <a href="#" data-index="1" class="nav-link">-->
+  <!--        <div class="item-heading ">-->
+  <!--          <span>02</span>-->
+  <!--          <img src="--><?php //echo get_template_directory_uri() ?><!--/images/png/services-swipper-02.png" alt="Outstaffing">-->
+  <!--        </div>-->
+  <!--        <h6>Outstaffing</h6>-->
+  <!--      </a>-->
+  <!--      <a href="#" data-index="2" class="nav-link">-->
+  <!--        <div class="item-heading ">-->
+  <!--          <span>03</span>-->
+  <!--          <img src="--><?php //echo get_template_directory_uri() ?><!--/images/png/services-swipper-03.png" alt="Product Team">-->
+  <!--        </div>-->
+  <!--        <h6>Product Team</h6>-->
+  <!--      </a>-->
+  <!--    </nav>-->
+  <!--    <div class="swipe-section">-->
+  <!--      <section class="panel">-->
+  <!--        <div class="inner">-->
+  <!--          <div class="panel-heading">-->
+  <!--            <h6>Outsourcing</h6>-->
+  <!--            <span class="link">From 1 to 8 weeks <a href="#">contact us</a> for details</span>-->
+  <!--          </div>-->
+  <!--          <img src="--><?php //echo get_template_directory_uri() ?><!--/images/content/services-swipper-content-01.png"-->
+  <!--               alt="Outsourcing">-->
+  <!--        </div>-->
+  <!--      </section>-->
+  <!--      <section class="panel">-->
+  <!--        <div class="inner">-->
+  <!--          <div class="panel-heading">-->
+  <!--            <h6>Outstaffing</h6>-->
+  <!--            <span class="link">From 1 to 8 weeks <a href="#">contact us</a> for details</span>-->
+  <!--          </div>-->
+  <!--          <img src="--><?php //echo get_template_directory_uri() ?><!--/images/content/services-swipper-content-01.png"-->
+  <!--               alt="Outstaffing">-->
+  <!--        </div>-->
+  <!--      </section>-->
+  <!--      <section class="panel">-->
+  <!--        <div class="inner">-->
+  <!--          <div class="panel-heading">-->
+  <!--            <h6>Product Team</h6>-->
+  <!--            <span class="link">From 1 to 8 weeks <a href="#">contact us</a> for details</span>-->
+  <!--          </div>-->
+  <!--          <img src="--><?php //echo get_template_directory_uri() ?><!--/images/content/services-swipper-content-01.png"-->
+  <!--               alt="Product Team">-->
+  <!--        </div>-->
+  <!--      </section>-->
+  <!--    </div>-->
+  <!--  </section>-->
 
 
   <section class="home-cta-block wow fadeInUp"
