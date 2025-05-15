@@ -1,0 +1,73 @@
+.single-career-ul-section {
+  padding-top: clamp(32px, 16.9796px + 3.2653vw, 64px);
+  padding-bottom: clamp(32px, 16.9796px + 3.2653vw, 64px);
+}
+
+.single-career-ul-section .container {
+  display: flex;
+  gap: 16px;
+}
+
+.single-career-ul-section .heading-wrapper,
+.single-career-ul-section .section-list {
+  flex: 1 1 50%;
+}
+
+.single-career-ul-section .section-title {
+  font-family: Satoshi-Bold;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 1.5; /* 150% */
+  color: var(--e-global-color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.64px;
+}
+
+.single-career-ul-section .section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.single-career-ul-section .section-item {
+  position: relative;
+  padding-left: 24px;
+  font-family: Satoshi-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 25.2px */
+  color: rgb(240 243 250 / 90%);
+}
+
+.single-career-ul-section .section-item::before {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  content: '';
+  background-color: var(--e-global-color-brand);
+  border-radius: 50%;
+}
+
+.single-career-ul-section .section-item p {
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 998px) {
+  .single-career-ul-section .container {
+    flex-direction: column;
+  }
+
+  .single-career-ul-section .heading-wrapper,
+  .single-career-ul-section .section-list {
+    flex: 1 1 auto;
+  }
+}

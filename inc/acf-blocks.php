@@ -140,6 +140,13 @@ function devsx_register_acf_blocks()
       'keywords' => ['numbered list', 'list', 'single post']
     ],
     [
+      'slug' => 'single-career-unnumbered-list',
+      'title' => __('DevsX - Single Career Unnumbered list section', 'devsx'),
+      'description' => __('Heading, list and text', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['unnumbered list', 'list', 'single career', 'vacancy']
+    ],
+    [
       'slug' => 'single-post-share',
       'title' => __('DevsX - Single post Section for sharing', 'devsx'),
       'description' => __('List, text', 'devsx'),
