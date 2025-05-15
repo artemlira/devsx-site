@@ -3205,3 +3205,71 @@ a:has(button) {
 
 
 /* single blog post page end */
+
+/* single career post page start */
+.single-career-hero {
+  padding-top: 100px;
+  padding-bottom: 48px;
+  background: url("../images/career-hero-bg.jpg") center / cover no-repeat;
+  background-blend-mode: overlay, normal;
+  transform: translateY(-100px);
+}
+
+.career-hero-content {
+  margin-top: clamp(10px, -7.8367px + 3.8776vw, 48px);
+}
+
+.career-hero-title {
+  font-family: Satoshi-Medium;
+  font-size: clamp(56px, 40.9796px + 3.2653vw, 88px);
+  font-style: normal;
+  font-weight: 500;
+  font-feature-settings: 'liga' off;
+  line-height: 1.2; /* 120.455% */
+  color: var(--e-global-color-text);
+  text-transform: capitalize;
+}
+
+.career-hero-taxonomies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  align-items: center;
+  margin-top: clamp(16px, 12.2449px + 0.8163vw, 24px);
+}
+
+.career-hero-locations,
+.career-hero-levels {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.career-hero-locations,
+.career-hero-levels {
+  padding: 0;
+  margin: 0;
+  font-family: Satoshi-Regular;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: 'liga' off;
+  line-height: 1.33; /* 133.333% */
+  color: var(--e-global-color-text);
+  list-style: none;
+}
+
+.career-hero-locations p,
+.career-hero-levels p {
+  padding: 0;
+  margin: 0;
+  font-family: Satoshi-Regular;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-feature-settings: 'liga' off;
+  line-height: 1.33; /* 133.333% */
+  color: rgb(240 243 250 / 32%);
+}
+
+/* single career post page end */
