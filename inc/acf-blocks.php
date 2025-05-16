@@ -147,6 +147,13 @@ function devsx_register_acf_blocks()
       'keywords' => ['unnumbered list', 'list', 'single career', 'vacancy']
     ],
     [
+      'slug' => 'single-career-about-role',
+      'title' => __('DevsX - Single Career About the Role section', 'devsx'),
+      'description' => __('Heading and text', 'devsx'),
+      'icon' => 'cover-image',
+      'keywords' => ['about', 'role', 'single career', 'vacancy']
+    ],
+    [
       'slug' => 'single-post-share',
       'title' => __('DevsX - Single post Section for sharing', 'devsx'),
       'description' => __('List, text', 'devsx'),

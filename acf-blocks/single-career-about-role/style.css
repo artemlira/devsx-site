@@ -1,0 +1,42 @@
+.single-career-about-section {
+  padding-bottom: clamp(32px, 16.9796px + 3.2653vw, 64px);
+}
+
+.single-career-about-section .container {
+  display: flex;
+  gap: 16px;
+}
+
+.single-career-about-section .section-title {
+  flex: 1 1 50%;
+  font-family: Satoshi-Bold;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  font-feature-settings: 'liga' off;
+  line-height: 1.5; /* 150% */
+  color: var(--e-global-color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.64px;
+}
+
+.single-career-about-section .section-text {
+  flex: 1 1 50%;
+  font-family: Satoshi-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4; /* 25.2px */
+  color: rgb(240 243 250 / 90%);
+}
+
+@media screen and (max-width: 998px) {
+  .single-career-about-section .container {
+    flex-direction: column;
+  }
+
+  .single-career-about-section .section-title,
+  .single-career-about-section .section-text {
+    flex: 1 1 auto;
+  }
+}
